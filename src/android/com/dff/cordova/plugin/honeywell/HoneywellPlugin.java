@@ -36,6 +36,7 @@ public class HoneywellPlugin extends CommonPlugin {
 			
 			@Override
 			public void onCreated(AidcManager aidcManager) {
+				CordovaPluginLog.d(LOG_TAG, "AidcManager created");
 				HoneywellPlugin.this.aidcManager = aidcManager;
 				barcodeReader = HoneywellPlugin.this.aidcManager.createBarcodeReader();
 				
@@ -61,6 +62,8 @@ public class HoneywellPlugin extends CommonPlugin {
     	super.onResume(multitasking);
     	
     	if (this.barcodeReader != null) {
+    		CordovaPluginLog.d(LOG_TAG, "claim barcode reader");
+    		
     		try {
     			this.barcodeReader.claim();
     		}
@@ -78,6 +81,7 @@ public class HoneywellPlugin extends CommonPlugin {
     public void onPause(boolean multitasking) {
     	super.onPause(multitasking);
         if (this.barcodeReader != null) {
+        	CordovaPluginLog.d(LOG_TAG, "release barcode reader");
             // release the scanner claim so we don't get any scanner
             // notifications while paused.
             this.barcodeReader.release();
