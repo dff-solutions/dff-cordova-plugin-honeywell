@@ -43,12 +43,16 @@ public class HoneywellPlugin extends CommonPlugin {
 				try {
 					barcodeReader.setProperty(BarcodeReader.PROPERTY_TRIGGER_CONTROL_MODE, 
 							BarcodeReader.TRIGGER_CONTROL_MODE_AUTO_CONTROL);
+					barcodeReader.claim();
 				}
 				catch (UnsupportedPropertyException e) {
+					CordovaPluginLog.e(LOG_TAG, e.getMessage(), e);
+				} catch (ScannerUnavailableException e) {
 					CordovaPluginLog.e(LOG_TAG, e.getMessage(), e);
 				}
 				
 				barcodeReader.addBarcodeListener(barcodeListener);
+				
 			}
 		});
 	}
