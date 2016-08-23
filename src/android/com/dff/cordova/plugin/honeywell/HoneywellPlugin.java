@@ -5,7 +5,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import com.dff.cordova.plugin.common.CommonPlugin;
-import com.dff.cordova.plugin.common.action.CordovaAction;
 import com.dff.cordova.plugin.common.log.CordovaPluginLog;
 import com.dff.cordova.plugin.honeywell.barcode.BarcodeListener;
 import com.honeywell.aidc.AidcManager;
