@@ -9,7 +9,7 @@
     <keywords>phonegap,cordova,honeywell,dff</keywords>
     
      <js-module src="www/honeywell.js" name="honeywell">
-        <clobbers target="HoneywellPlugin" />
+        <clobbers target="Honeywell" />
     </js-module>
     
     <dependency id="dff-cordova-plugin-common" url="https://github.com/dff-solutions/dff.CordovaPlugin.Common.git" />
@@ -17,7 +17,7 @@
     <!-- android -->
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="HoneywellPlugin">
+            <feature name="Honeywell">
                 <param name="android-package" value="com.dff.cordova.plugin.honeywell.HoneywellPlugin"/>
                 <param name="onload" value="true" />
             </feature>

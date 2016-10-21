@@ -7,20 +7,69 @@ Cordova plugin for Honeywell CT50 etc. devices.
 ## Installation
 
     cordova plugin add https://github.com/dff-solutions/dff-cordova-plugin-honeywell.git
-    
-    
-## Usage
-### Listen to barcodes
 
-    HoneywellPlugin.onBarcodeEvent(function (data) {
+
+## Usage
+
+### onBarcodeEvent
+
+```javascript
+/**
+ *
+ *
+ * @name onBarcodeEvent
+ * @function
+ * @param {function} success Callback for success
+ * @param {function} error Callback for error
+ * @param {Object} args Named arguments
+ */
+Honeywell
+    .onBarcodeEvent(function (data) {
         console.log(data);
     }, function (reason) {
         console.error(reason);
     });
-    
-    HoneywellPlugin.onFailureEvent(function (failure) {
+```
+
+### onFailureEvent
+
+```javascript
+/**
+ *
+ *
+ * @name onFailureEvent
+ * @function
+ * @param {function} success Callback for success
+ * @param {function} error Callback for error
+ * @param {Object} args Named arguments
+ */
+Honeywell
+    .onFailureEvent(function (failure) {
         console.log(failure);
     }, function (reason) {
         console.error(reason);
     });
-    
+```
+
+### barcodeReaderPressSoftwareTrigger
+
+```javascript
+/**
+ *
+ *
+ * @name barcodeReaderPressSoftwareTrigger
+ * @function
+ * @param {function} success Callback for success
+ * @param {function} error Callback for error
+ * @param {Object} args Named arguments
+ * @param {Object} args.press If software trigger is pressed or not
+ */
+Honeywell
+    .barcodeReaderPressSoftwareTrigger(function () {
+        console.log("pressed");
+    }, function (reason) {
+        console.error(reason);
+    }, {
+        press: true
+    });
+```

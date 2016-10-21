@@ -8,10 +8,10 @@
 'use strict';
 
 var cordova = require('cordova');
-var feature = "HoneywellPlugin";
+var feature = "Honeywell";
 var self = {};
 
-var actions = ["onLog", "onBarcodeEvent", "onFailureEvent"];
+var actions = ["onLog", "onBarcodeEvent", "onFailureEvent", "barcodeReaderPressSoftwareTrigger"];
 
 function createActionFunction (action) {
     return function (success, error, args) {
