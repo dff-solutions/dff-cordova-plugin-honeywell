@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?> 
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0" 
-    id="dff-cordova-plugins-honeywell"
+    id="dff-cordova-plugin-honeywell"
     version="0.0.1">
 
     <name>Honeywell</name>
