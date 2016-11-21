@@ -161,7 +161,7 @@ public class HoneywellPlugin extends CommonPlugin {
 		}
 
 		if (cordovaAction != null) {
-			super.actionHandler.post(cordovaAction);
+			this.cordova.getThreadPool().execute(cordovaAction);
 			return true;
 		}
 
