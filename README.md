@@ -1,4 +1,8 @@
 # dff-cordova-plugin-honeywell
+This fork is only created to add package.json see 
+[pull request 1](https://github.com/dff-solutions/dff-cordova-plugin-honeywell/pull/1)
+
+
 Cordova plugin for Honeywell CT50 etc. devices.
 
 Please see [Honeywell Mobility SDK for Android](https://www.honeywellaidc.com/products/software/developer-library/mobility-sdk-for-android) for further details. Honeywell SDK for Android can be downloaded at [Android Data Collection SDK](https://hsmftp.honeywell.com/)
