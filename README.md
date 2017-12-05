@@ -1,7 +1,4 @@
 # dff-cordova-plugin-honeywell
-This fork is only created to add package.json see 
-[pull request 1](https://github.com/dff-solutions/dff-cordova-plugin-honeywell/pull/1)
-
 
 Cordova plugin for Honeywell CT50 etc. devices.
 
