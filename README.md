@@ -1,5 +1,4 @@
 # dff-cordova-plugin-honeywell
-
 Cordova plugin for Honeywell CT50 etc. devices.
 
 Please see [Honeywell Mobility SDK for Android](https://www.honeywellaidc.com/products/software/developer-library/mobility-sdk-for-android) for further details. Honeywell SDK for Android can be downloaded at [Android Data Collection SDK](https://hsmftp.honeywell.com/)
