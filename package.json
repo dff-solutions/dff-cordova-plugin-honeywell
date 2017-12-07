@@ -1,0 +1,24 @@
+{
+    "name": "dff-cordova-plugin-honeywell",
+    "version": "0.0.1",
+    "description": "Honeywell Plugin",
+    "cordova": {
+      "id": "dff-cordova-plugin-honeywell",
+      "platforms": [
+        "android"
+      ]
+    },
+    "keywords": [
+        "phonegap",
+        "cordova",
+        "honeywell",
+        "dff"
+    ],
+    "engines": [
+      {
+        "name": "cordova",
+        "version": ">=3.0.0"
+      }
+    ],
+    "author": "dff solutions"
+  }
