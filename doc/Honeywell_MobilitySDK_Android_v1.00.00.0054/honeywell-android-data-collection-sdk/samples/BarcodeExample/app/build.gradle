@@ -1,0 +1,38 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 19
+    buildToolsVersion "25.0.3"
+
+    defaultConfig {
+        applicationId "com.honeywell.barcodeexample"
+        minSdkVersion 16
+        targetSdkVersion 17
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def outputFile = output.outputFile
+            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                if (variant.buildType.name.equals('release')) {
+                    output.outputFile = new File(outputFile.parent,
+                            "BarcodeExample" + "-release.apk")
+                } else if (variant.buildType.name.equals('debug')) {
+                    output.outputFile = new File(outputFile.parent,
+                            "BarcodeExample" + "-debug.apk")
+                }
+            }
+        }
+    }
+
+    dependencies {
+        compile project(":DataCollectionLib")
+    }
+}

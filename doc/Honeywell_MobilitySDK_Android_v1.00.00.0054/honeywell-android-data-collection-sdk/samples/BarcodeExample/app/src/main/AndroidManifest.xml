@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="190000008" android:versionName="1.90.00.0008" package="com.honeywell.barcodeexample">
+
+    <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="17"/>
+
+    <application android:allowBackup="true" android:icon="@drawable/barcode_example_icon" android:label="@string/app_name" android:theme="@style/AppTheme">
+        <activity android:label="@string/app_name" android:name="com.honeywell.barcodeexample.MainActivity" android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:label="@string/barcode" android:name="com.honeywell.barcodeexample.AutomaticBarcodeActivity" android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.AUTOMATICBARCODEACTIVITY"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:label="@string/barcode" android:name="com.honeywell.barcodeexample.ClientBarcodeActivity" android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.CLIENTBARCODEACTIVITY"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:label="@string/barcode" android:name="com.honeywell.barcodeexample.ScannerSelectionBarcodeActivity" android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.SCANNERSELECTBARCODEACTIVITY"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
