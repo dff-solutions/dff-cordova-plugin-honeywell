@@ -1,5 +1,5 @@
 # Honeywell Data Collection SDK
-This Plugin *uses Honeywell Mobility SDK Version `1.00.00.0054`*.
+This Plugin uses *Honeywell Mobility SDK Version `1.00.00.0054`*.
 It includes *Android Data Collection Java API `V1.90`*.
 Please see [this folder](.) for further information.
 
