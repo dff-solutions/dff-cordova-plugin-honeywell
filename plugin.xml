@@ -30,15 +30,16 @@
         
         <lib-file src="libs/DataCollection.jar" />
         
-		<source-file src="src/android/com/dff/cordova/plugin/honeywell/json/model/JsonPoint.java" target-dir="src/com/dff/cordova/plugin/honeywell/json/model" />
-		<source-file src="src/android/com/dff/cordova/plugin/honeywell/json/model/JsonBarcodeEvent.java" target-dir="src/com/dff/cordova/plugin/honeywell/json/model" />
-		<source-file src="src/android/com/dff/cordova/plugin/honeywell/json/model/JsonFailureEvent.java" target-dir="src/com/dff/cordova/plugin/honeywell/json/model" />
-		<source-file src="src/android/com/dff/cordova/plugin/honeywell/barcode/BarcodeCallbackHandler.java" target-dir="src/com/dff/cordova/plugin/honeywell/barcode" />
-		<source-file src="src/android/com/dff/cordova/plugin/honeywell/barcode/FailureCallbackHandler.java" target-dir="src/com/dff/cordova/plugin/honeywell/barcode" />
-		<source-file src="src/android/com/dff/cordova/plugin/honeywell/barcode/action/HoneywellAction.java" target-dir="src/com/dff/cordova/plugin/honeywell/barcode/action" />
-		<source-file src="src/android/com/dff/cordova/plugin/honeywell/barcode/action/BarcodeReaderPressSoftwareTrigger.java" target-dir="src/com/dff/cordova/plugin/honeywell/barcode/action" />
-		<source-file src="src/android/com/dff/cordova/plugin/honeywell/barcode/BarcodeListener.java" target-dir="src/com/dff/cordova/plugin/honeywell/barcode" />
-		<source-file src="src/android/com/dff/cordova/plugin/honeywell/HoneywellPlugin.java" target-dir="src/com/dff/cordova/plugin/honeywell" />
+        <source-file src="src/main/java/com/dff/cordova/plugin/honeywell/barcode/action/BarcodeReaderPressSoftwareTrigger.java" target-dir="src/main/java/com/dff/cordova/plugin/honeywell/barcode/action" />
+        <source-file src="src/main/java/com/dff/cordova/plugin/honeywell/barcode/action/HoneywellAction.java" target-dir="src/main/java/com/dff/cordova/plugin/honeywell/barcode/action" />
+        <source-file src="src/main/java/com/dff/cordova/plugin/honeywell/barcode/BarcodeCallbackHandler.java" target-dir="src/main/java/com/dff/cordova/plugin/honeywell/barcode" />
+        <source-file src="src/main/java/com/dff/cordova/plugin/honeywell/barcode/BarcodeListener.java" target-dir="src/main/java/com/dff/cordova/plugin/honeywell/barcode" />
+        <source-file src="src/main/java/com/dff/cordova/plugin/honeywell/barcode/FailureCallbackHandler.java" target-dir="src/main/java/com/dff/cordova/plugin/honeywell/barcode" />
+        <source-file src="src/main/java/com/dff/cordova/plugin/honeywell/HoneywellPlugin.java" target-dir="src/main/java/com/dff/cordova/plugin/honeywell" />
+        <source-file src="src/main/java/com/dff/cordova/plugin/honeywell/json/model/JsonBarcodeEvent.java" target-dir="src/main/java/com/dff/cordova/plugin/honeywell/json/model" />
+        <source-file src="src/main/java/com/dff/cordova/plugin/honeywell/json/model/JsonFailureEvent.java" target-dir="src/main/java/com/dff/cordova/plugin/honeywell/json/model" />
+        <source-file src="src/main/java/com/dff/cordova/plugin/honeywell/json/model/JsonPoint.java" target-dir="src/main/java/com/dff/cordova/plugin/honeywell/json/model" />
     
      </platform>
 </plugin>
+
