@@ -11,7 +11,13 @@ var cordova = require('cordova');
 var feature = "Honeywell";
 var self = {};
 
-var actions = ["onLog", "onBarcodeEvent", "onFailureEvent", "barcodeReaderPressSoftwareTrigger"];
+var actions = [
+    "onLog",
+    "onBarcodeEvent",
+    "onFailureEvent",
+    "barcodeReaderPressSoftwareTrigger",
+    "barcodeReaderGetInfo"
+];
 
 function createActionFunction (action) {
     return function (success, error, args) {

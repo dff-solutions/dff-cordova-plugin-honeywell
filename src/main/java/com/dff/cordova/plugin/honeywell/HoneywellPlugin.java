@@ -1,5 +1,6 @@
 package com.dff.cordova.plugin.honeywell;
 
+import com.dff.cordova.plugin.honeywell.barcode.action.BarcodeReaderGetInfo;
 import org.apache.cordova.CallbackContext;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -158,6 +159,10 @@ public class HoneywellPlugin extends CommonPlugin {
 		else if (BarcodeReaderPressSoftwareTrigger.ACTION_NAME.equals(action)) {
 			cordovaAction = new BarcodeReaderPressSoftwareTrigger(action, args, callbackContext, this.cordova,
 			        this.barcodeReader);
+		}
+		else if (BarcodeReaderGetInfo.ACTION_NAME.equals(action)) {
+			cordovaAction = new BarcodeReaderGetInfo(action, args, callbackContext, this.cordova,
+					this.barcodeReader);
 		}
 
 		if (cordovaAction != null) {

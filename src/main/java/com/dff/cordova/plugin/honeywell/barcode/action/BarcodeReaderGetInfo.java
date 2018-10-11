@@ -2,6 +2,7 @@ package com.dff.cordova.plugin.honeywell.barcode.action;
 
 import com.dff.cordova.plugin.common.log.CordovaPluginLog;
 import com.honeywell.aidc.BarcodeReader;
+import com.honeywell.aidc.BarcodeReaderInfo;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
 import org.json.JSONArray;
@@ -10,7 +11,7 @@ import org.json.JSONObject;
 public class BarcodeReaderGetInfo extends HoneywellAction {
 
     private static final String TAG = "com.dff.cordova.plugin.honeywell.barcode.action.BarcodeReaderGetInfo";
-    public static final String ACTION_NAME = "BarcodeReaderGetInfo";
+    public static final String ACTION_NAME = "barcodeReaderGetInfo";
 
     //public static final String JSON_ARGS_PRESS = "press";
     public static final String[] JSON_ARGS = { };
@@ -23,16 +24,17 @@ public class BarcodeReaderGetInfo extends HoneywellAction {
     @Override
     public void run() {
         try {
-            JSONObject jsonArgs = super.checkJsonArgs(this.args, JSON_ARGS);
+            //JSONObject jsonArgs = super.checkJsonArgs(this.args, JSON_ARGS);
             //boolean press = jsonArgs.getBoolean(JSON_ARGS_PRESS);
 
-            /*
-            this.barcodeReader.aim(press);
-            this.barcodeReader.light(press);
-            this.barcodeReader.decode(press);
-            */
+            //this.barcodeReader.aim(press);
+            //this.barcodeReader.light(true);
+            //this.barcodeReader.decode(press);
 
-            this.callbackContext.success();
+            BarcodeReaderInfo info = this.barcodeReader.getInfo();
+            String name =  info.getName();
+
+            this.callbackContext.success(name);
         }
         catch (Exception e) {
             CordovaPluginLog.e(TAG, e.getMessage(), e);

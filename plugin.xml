@@ -30,6 +30,7 @@
         
         <lib-file src="libs/DataCollection.jar" />
         
+        <source-file src="src/main/java/com/dff/cordova/plugin/honeywell/barcode/action/BarcodeReaderGetInfo.java" target-dir="src/main/java/com/dff/cordova/plugin/honeywell/barcode/action" />
         <source-file src="src/main/java/com/dff/cordova/plugin/honeywell/barcode/action/BarcodeReaderPressSoftwareTrigger.java" target-dir="src/main/java/com/dff/cordova/plugin/honeywell/barcode/action" />
         <source-file src="src/main/java/com/dff/cordova/plugin/honeywell/barcode/action/HoneywellAction.java" target-dir="src/main/java/com/dff/cordova/plugin/honeywell/barcode/action" />
         <source-file src="src/main/java/com/dff/cordova/plugin/honeywell/barcode/BarcodeCallbackHandler.java" target-dir="src/main/java/com/dff/cordova/plugin/honeywell/barcode" />
