@@ -29,6 +29,7 @@
         </config-file>
         
         <lib-file src="libs/DataCollection.jar" />
+        <framework custom="true" src="build-honeywell-plugin.gradle" type="gradleReference" />
         
         <source-file src="src/main/java/com/dff/cordova/plugin/honeywell/barcode/action/BarcodeReaderGetInfo.java" target-dir="src/main/java/com/dff/cordova/plugin/honeywell/barcode/action" />
         <source-file src="src/main/java/com/dff/cordova/plugin/honeywell/barcode/action/BarcodeReaderPressSoftwareTrigger.java" target-dir="src/main/java/com/dff/cordova/plugin/honeywell/barcode/action" />
