@@ -9,16 +9,80 @@ The DataCollection API callbacks addBarcodeDeviceListener() and removeBarcodeDev
 ## listBarcodeDevices
 Returns a list of names of devices which were connected to the device at some point. You can only connect to devices which are listed in listConnectedBarCodeDevices().
 
+```javascript
+/**
+ * @name listBarcodeDevices
+ * @function
+ * @param {function} success Callback for success
+ * @param {function} error Callback for error
+ * @param {Object} args Named arguments
+ */
+Honeywell
+    .listBarcodeDevices(function (data) {
+        console.log(data);
+    }, function (reason) {
+        console.error(reason);
+    });
+```
+
 ## listConnectedBarcodeDevices
 Returns a list of names with the currently connected barcode devices. You can use createBarcodeReader() to connect to one. 
+
+```javascript
+/**
+ * @name listConnectedBarcodeDevices
+ * @function
+ * @param {function} success Callback for success
+ * @param {function} error Callback for error
+ * @param {Object} args Named arguments
+ */
+Honeywell
+    .listConnectedBarcodeDevices(function (data) {
+        console.log(data);
+    }, function (reason) {
+        console.error(reason);
+    });
+```
 
 ## createBarcodeReader
 Call without name to connect to the internal barcodereader. Call with name to connect to a specific device.
 
 Please note that the name has to be valid and that device has to be listed in the listConnectedBarCodeDevices() call. 
 
+```javascript
+/**
+ * @name createBarcodeReader
+ * @function
+ * @param {function} success Callback for success
+ * @param {function} error Callback for error
+ * @param {Object} args Named arguments
+ */
+Honeywell
+    .createBarcodeReader(function (data) {
+        console.log(data);
+    }, function (reason) {
+        console.error(reason);
+    });
+```
+
 ## closeBarcodeReader
-Call to close the connection to the currently connected barcode reader device.
+Call to close the connection to the currently connected barcode reader device. Before opening a new device the previous has to be closed by the plugin user.
+
+```javascript
+/**
+ * @name closeBarcodeReader
+ * @function
+ * @param {function} success Callback for success
+ * @param {function} error Callback for error
+ * @param {Object} args Named arguments
+ */
+Honeywell
+    .closeBarcodeReader(function (data) {
+        console.log(data);
+    }, function (reason) {
+        console.error(reason);
+    });
+```
 
 # BarcodeReader
 
