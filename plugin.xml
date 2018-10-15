@@ -31,6 +31,10 @@
         <lib-file src="libs/DataCollection.jar" />
         <framework custom="true" src="build-honeywell-plugin.gradle" type="gradleReference" />
         
+        <source-file src="src/main/java/com/dff/cordova/plugin/honeywell/barcode/action/CloseBarcodeReader.java" target-dir="src/main/java/com/dff/cordova/plugin/honeywell/barcode/action" />
+        <source-file src="src/main/java/com/dff/cordova/plugin/honeywell/barcode/action/CreateBarcodeReader.java" target-dir="src/main/java/com/dff/cordova/plugin/honeywell/barcode/action" />
+        <source-file src="src/main/java/com/dff/cordova/plugin/honeywell/barcode/action/ListConnectedBarcodeDevices.java" target-dir="src/main/java/com/dff/cordova/plugin/honeywell/barcode/action" />
+        <source-file src="src/main/java/com/dff/cordova/plugin/honeywell/barcode/action/ListBarcodeDevices.java" target-dir="src/main/java/com/dff/cordova/plugin/honeywell/barcode/action" />
         <source-file src="src/main/java/com/dff/cordova/plugin/honeywell/barcode/action/GsonNamingStrategy.java" target-dir="src/main/java/com/dff/cordova/plugin/honeywell/barcode/action" />
         <source-file src="src/main/java/com/dff/cordova/plugin/honeywell/barcode/action/BarcodeReaderGetInfo.java" target-dir="src/main/java/com/dff/cordova/plugin/honeywell/barcode/action" />
         <source-file src="src/main/java/com/dff/cordova/plugin/honeywell/barcode/action/BarcodeReaderPressSoftwareTrigger.java" target-dir="src/main/java/com/dff/cordova/plugin/honeywell/barcode/action" />

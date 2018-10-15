@@ -1,5 +1,7 @@
 package com.dff.cordova.plugin.honeywell.barcode.action;
 
+import com.dff.cordova.plugin.honeywell.barcode.BarcodeListener;
+import com.honeywell.aidc.AidcManager;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
 import org.json.JSONArray;
@@ -16,8 +18,9 @@ public class BarcodeReaderPressSoftwareTrigger extends HoneywellAction {
 	public static final String[] JSON_ARGS = { JSON_ARGS_PRESS };
 
 	public BarcodeReaderPressSoftwareTrigger(String action, JSONArray args, CallbackContext callbackContext,
-	        CordovaInterface cordova, BarcodeReader barcodeReader) {
-		super(action, args, callbackContext, cordova, barcodeReader);
+			 CordovaInterface cordova, BarcodeReader barcodeReader, AidcManager aidcManager,
+			 BarcodeListener barcodeListener) {
+		super(action, args, callbackContext, cordova, barcodeReader, aidcManager, barcodeListener);
 	}
 
 	@Override
@@ -37,5 +40,4 @@ public class BarcodeReaderPressSoftwareTrigger extends HoneywellAction {
 			this.callbackContext.error(e.getMessage());
 		}
 	}
-
 }

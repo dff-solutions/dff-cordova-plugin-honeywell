@@ -16,7 +16,11 @@ var actions = [
     "onBarcodeEvent",
     "onFailureEvent",
     "barcodeReaderPressSoftwareTrigger",
-    "barcodeReaderGetInfo"
+    "barcodeReaderGetInfo",
+    "listBarcodeDevices",
+    "listConnectedBarcodeDevices",
+    "createBarcodeReader",
+    "closeBarcodeReader"
 ];
 
 function createActionFunction (action) {
