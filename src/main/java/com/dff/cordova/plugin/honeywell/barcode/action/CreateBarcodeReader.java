@@ -5,13 +5,11 @@ import com.dff.cordova.plugin.honeywell.HoneywellPlugin;
 import com.dff.cordova.plugin.honeywell.barcode.BarcodeListener;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.honeywell.aidc.AidcManager;
-import com.honeywell.aidc.BarcodeReader;
-import com.honeywell.aidc.BarcodeReaderInfo;
-import com.honeywell.aidc.ScannerUnavailableException;
+import com.honeywell.aidc.*;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -26,7 +24,8 @@ public class CreateBarcodeReader extends HoneywellAction {
         super(action, args, callbackContext, cordova, barcodeReader,  aidcManager, barcodeListener);
     }
 
-    // TODO: optional param for name, check for invalid argument
+    public static final String JSON_ARGS_NAME = "name";
+    public static final String[] JSON_ARGS = { JSON_ARGS_NAME };
 
     @Override
     public void run() {
@@ -37,15 +36,31 @@ public class CreateBarcodeReader extends HoneywellAction {
                 // check for alredy connected barcode reader
                 if(this.barcodeReader == null) {
 
-                    // create new barcode reader with no properties set
-                    this.barcodeReader = this.aidcManager.createBarcodeReader();
+                    // get optional name parameter
+                    JSONObject jsonArgs = super.checkJsonArgs(this.args, JSON_ARGS);
+                    String name = jsonArgs.getString(JSON_ARGS_NAME);
 
                     try
                     {
+                        // create new barcode reader with no properties set
+                        if(name.equals("")) {
+                            this.barcodeReader = this.aidcManager.createBarcodeReader();
+                        }
+                        else
+                        {
+                            this.barcodeReader = this.aidcManager.createBarcodeReader(name);
+                        }
+
                         this.barcodeReader.claim();
                         this.barcodeReader.addBarcodeListener(this.barcodeListener);
                     }
                     catch (ScannerUnavailableException e) {
+                        this.callbackContext.success("Exception: " + e.getMessage());
+                        CordovaPluginLog.e(TAG, e.getMessage(), e);
+                    }
+                    catch (Exception e)
+                    {
+                        this.callbackContext.success("Exception: " + e.getMessage());
                         CordovaPluginLog.e(TAG, e.getMessage(), e);
                     }
                 }
