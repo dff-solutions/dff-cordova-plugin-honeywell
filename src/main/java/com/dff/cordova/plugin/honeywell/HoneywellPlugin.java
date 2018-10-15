@@ -40,41 +40,36 @@ public class HoneywellPlugin extends CommonPlugin {
                 CordovaPluginLog.d(LOG_TAG, "AidcManager created");
                 HoneywellPlugin.this.aidcManager = aidcManager;
 
-                // listener for new devices
+                // listener for connected and disconnection events of devices
                 HoneywellPlugin.this.aidcManager.addBarcodeDeviceListener(new AidcManager.BarcodeDeviceListener() {
                     @Override
                     public void onBarcodeDeviceConnectionEvent(BarcodeDeviceConnectionEvent barcodeDeviceConnectionEvent) {
-                        // barcode device was added, nothing to do.
-                        // plugin user can use it at some point.
-                    }
-                });
 
-                // listener for removed devices
-                HoneywellPlugin.this.aidcManager.removeBarcodeDeviceListener(new AidcManager.BarcodeDeviceListener() {
-                    @Override
-                    public void onBarcodeDeviceConnectionEvent(BarcodeDeviceConnectionEvent barcodeDeviceConnectionEvent) {
-                        // a barcode devie was removed
+                        int event = barcodeDeviceConnectionEvent.getConnectionStatus();
 
-                        // check for connected barcode reader
-                        if(HoneywellPlugin.this.barcodeReader != null)
+                        if(event == AidcManager.BARCODE_DEVICE_CONNECTED)
                         {
-                            try {
-                                // get name of currently connected device
-                                String name = HoneywellPlugin.this.barcodeReader.getInfo().getName();
+                            // barcode device was added, nothing to do.
+                            // plugin user can use it at some point.
+                        } else if (event == AidcManager.BARCODE_DEVICE_DISCONNECTED) {
 
-                                // check for lost connection
-                                if(barcodeDeviceConnectionEvent.getBarcodeReaderInfo().getName().equals(name))
-                                {
-                                    // remove listener and close barcode reader
-                                    CordovaPluginLog.d(LOG_TAG, "lost connection to connected barcode reader.");
-                                    HoneywellPlugin.this.barcodeReader.removeBarcodeListener(HoneywellPlugin.this.barcodeListener);
-                                    HoneywellPlugin.this.barcodeReader.close();
-                                    HoneywellPlugin.this.barcodeReader = null;
+                            // a barcode devie was removed
+
+                            // check for connected barcode reader
+                            if (HoneywellPlugin.this.barcodeReader != null) {
+                                try {
+                                    // get name of currently connected device
+                                    String name = HoneywellPlugin.this.barcodeReader.getInfo().getName();
+
+                                    // check for lost connection
+                                    if (barcodeDeviceConnectionEvent.getBarcodeReaderInfo().getName().equals(name)) {
+                                        // remove listener and close barcode reader
+                                        CordovaPluginLog.d(LOG_TAG, "lost connection to connected barcode reader.");
+                                        closeAndNullBarcodeReader();
+                                    }
+                                } catch (Exception e) {
+                                    e.printStackTrace();
                                 }
-                            }
-                            catch (Exception e)
-                            {
-                                e.printStackTrace();
                             }
                         }
                     }
@@ -83,9 +78,11 @@ public class HoneywellPlugin extends CommonPlugin {
         });
     }
 
-    private void releaseAndNullBarCodeReader()
+    private void closeAndNullBarcodeReader()
     {
-        // TODO: implement, may be used at multiple locations
+        HoneywellPlugin.this.barcodeReader.removeBarcodeListener(HoneywellPlugin.this.barcodeListener);
+        HoneywellPlugin.this.barcodeReader.close();
+        HoneywellPlugin.this.barcodeReader = null;
     }
 
     /**
