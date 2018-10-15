@@ -9,12 +9,12 @@ import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
 import org.json.JSONArray;
 
-public class CloseBarCodeReader extends HoneywellAction {
+public class CloseBarcodeReader extends HoneywellAction {
 
     private static final String TAG = "com.dff.cordova.plugin.honeywell.barcode.action.closeBarcodeReader";
     public static final String ACTION_NAME = "closeBarcodeReader";
 
-    public CloseBarCodeReader(String action, JSONArray args, CallbackContext callbackContext,
+    public CloseBarcodeReader(String action, JSONArray args, CallbackContext callbackContext,
                                CordovaInterface cordova, BarcodeReader barcodeReader, AidcManager aidcManager,
                                BarcodeListener barcodeListener) {
         super(action, args, callbackContext, cordova, barcodeReader,  aidcManager, barcodeListener);
