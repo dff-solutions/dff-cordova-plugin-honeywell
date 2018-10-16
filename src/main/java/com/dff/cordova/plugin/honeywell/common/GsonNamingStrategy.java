@@ -1,11 +1,11 @@
-package com.dff.cordova.plugin.honeywell.barcode.action;
+package com.dff.cordova.plugin.honeywell.common;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.FieldNamingStrategy;
 
 import java.lang.reflect.Field;
 
-class GsonNamingStrategy implements FieldNamingStrategy
+public class GsonNamingStrategy implements FieldNamingStrategy
 {
     public String translateName(Field field)
     {

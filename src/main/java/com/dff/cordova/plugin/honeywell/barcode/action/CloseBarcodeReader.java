@@ -32,18 +32,19 @@ public class CloseBarcodeReader extends HoneywellAction {
                     // unregister listernner and close the reader completely
                     this.barcodeReader.removeBarcodeListener(this.barcodeListener);
                     this.barcodeReader.close();
+                    this.callbackContext.success(returnJSONObject(BARCODE_CLOSED_SUCCESS));
                 }
                 else
                 {
                     // a reader is already connected
-                    this.callbackContext.success("No barcode reader is connected.");
+                    this.callbackContext.success(returnJSONObject(NO_BARCODE_READER_CONNECTED));
                 }
             }
             else
             {
                 // aidc manager is initialized from pluginInitialize method.
                 // this error below should never occur.
-                callbackContext.error("aidcManager not initialized");
+                callbackContext.error(returnJSONObject(AICD_NOT_INIT));
             }
         }
         catch (Exception e) {

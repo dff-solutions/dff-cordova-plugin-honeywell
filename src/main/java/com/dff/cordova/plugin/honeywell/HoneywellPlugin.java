@@ -12,6 +12,8 @@ import com.dff.cordova.plugin.common.log.CordovaPluginLog;
 import com.dff.cordova.plugin.honeywell.barcode.BarcodeListener;
 import com.honeywell.aidc.AidcManager.CreatedCallback;
 
+import static com.dff.cordova.plugin.honeywell.barcode.action.HoneywellAction.LOST_DEVICE_CONNECTION;
+
 public class HoneywellPlugin extends CommonPlugin {
 
     private static final String LOG_TAG = "com.dff.cordova.plugin.honeywell.HoneywellPlugin";
@@ -53,7 +55,7 @@ public class HoneywellPlugin extends CommonPlugin {
                             // plugin user can use it at some point.
                         } else if (event == AidcManager.BARCODE_DEVICE_DISCONNECTED) {
 
-                            // a barcode devie was removed
+                            // a barcode device was removed
 
                             // check for connected barcode reader
                             if (HoneywellPlugin.this.barcodeReader != null) {
@@ -64,8 +66,9 @@ public class HoneywellPlugin extends CommonPlugin {
                                     // check for lost connection
                                     if (barcodeDeviceConnectionEvent.getBarcodeReaderInfo().getName().equals(name)) {
                                         // remove listener and close barcode reader
-                                        CordovaPluginLog.d(LOG_TAG, "lost connection to connected barcode reader.");
+                                        CordovaPluginLog.d(LOG_TAG, LOST_DEVICE_CONNECTION);
                                         closeAndNullBarcodeReader();
+                                        // TODO: inform user that device connection was lost?
                                     }
                                 } catch (Exception e) {
                                     e.printStackTrace();

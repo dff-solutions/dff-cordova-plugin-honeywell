@@ -33,7 +33,7 @@ public class CreateBarcodeReader extends HoneywellAction {
             // check aidc manager (really necessary?)
             if(this.aidcManager != null) {
 
-                // check for alredy connected barcode reader
+                // check for already connected barcode reader
                 if(this.barcodeReader == null) {
 
                     // get optional name parameter
@@ -43,7 +43,7 @@ public class CreateBarcodeReader extends HoneywellAction {
                     try
                     {
                         // create new barcode reader with no properties set
-                        if(name.equals("")) {
+                        if(name == null) {
                             this.barcodeReader = this.aidcManager.createBarcodeReader();
                         }
                         else
@@ -55,26 +55,26 @@ public class CreateBarcodeReader extends HoneywellAction {
                         this.barcodeReader.addBarcodeListener(this.barcodeListener);
                     }
                     catch (ScannerUnavailableException e) {
-                        this.callbackContext.success("Exception: " + e.getMessage());
+                        this.callbackContext.error("Exception: " + e.getMessage());
                         CordovaPluginLog.e(TAG, e.getMessage(), e);
                     }
                     catch (Exception e)
                     {
-                        this.callbackContext.success("Exception: " + e.getMessage());
+                        this.callbackContext.error("Exception: " + e.getMessage());
                         CordovaPluginLog.e(TAG, e.getMessage(), e);
                     }
                 }
                 else
                 {
                     // a reader is already connected
-                    this.callbackContext.success("A barcode reader is already connected.");
+                    this.callbackContext.error(returnJSONObject(BARCODE_READER_ALREADY_ADDED));
                 }
             }
             else
             {
                 // aidc manager is initialized from pluginInitialize method.
                 // this error below should never occur.
-                callbackContext.error("aidcManager not initialized");
+                callbackContext.error(returnJSONObject(AICD_NOT_INIT));
             }
         }
         catch (Exception e) {

@@ -1,15 +1,18 @@
 package com.dff.cordova.plugin.honeywell.barcode.action;
 
 import com.dff.cordova.plugin.common.log.CordovaPluginLog;
+import com.dff.cordova.plugin.honeywell.HoneywellPlugin;
 import com.dff.cordova.plugin.honeywell.barcode.BarcodeListener;
+import com.dff.cordova.plugin.honeywell.common.GsonNamingStrategy;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.honeywell.aidc.AidcManager;
 import com.honeywell.aidc.BarcodeReader;
 import com.honeywell.aidc.BarcodeReaderInfo;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
 import org.json.JSONArray;
-import org.json.JSONObject;
 import com.google.gson.Gson;
 
 public class BarcodeReaderGetInfo extends HoneywellAction {
@@ -55,7 +58,7 @@ public class BarcodeReaderGetInfo extends HoneywellAction {
                 this.callbackContext.success(json);
             }
             else {
-                callbackContext.error("barcodereader not initialized");
+                this.callbackContext.error(returnJSONObject(BARCODE_READER_NOT_INIT));
             }
         }
         catch (Exception e) {

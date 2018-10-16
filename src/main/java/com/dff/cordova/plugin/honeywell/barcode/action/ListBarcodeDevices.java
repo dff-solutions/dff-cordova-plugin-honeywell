@@ -1,8 +1,8 @@
 package com.dff.cordova.plugin.honeywell.barcode.action;
 
 import com.dff.cordova.plugin.common.log.CordovaPluginLog;
-import com.dff.cordova.plugin.honeywell.HoneywellPlugin;
 import com.dff.cordova.plugin.honeywell.barcode.BarcodeListener;
+import com.dff.cordova.plugin.honeywell.common.GsonNamingStrategy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.honeywell.aidc.AidcManager;
@@ -44,7 +44,7 @@ public class ListBarcodeDevices extends HoneywellAction {
             {
                 // aidc manager is initialized in plugin init method.
                 // this error below should never occur.
-                callbackContext.error("aidcManager not initialized");
+                callbackContext.error(returnJSONObject(AICD_NOT_INIT));
             }
         }
         catch (Exception e) {
