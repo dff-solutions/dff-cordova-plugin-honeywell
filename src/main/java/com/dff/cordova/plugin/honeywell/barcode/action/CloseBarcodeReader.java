@@ -29,7 +29,7 @@ public class CloseBarcodeReader extends HoneywellAction {
                 // check for already claimed barcode reader
                 if(this.barcodeReader != null) {
 
-                    // unregister listernner and close the reader completely
+                    // unregister listener and close the reader completely
                     this.barcodeReader.removeBarcodeListener(this.barcodeListener);
                     this.barcodeReader.close();
                     this.callbackContext.success(returnJSONObject(BARCODE_CLOSED_SUCCESS));
