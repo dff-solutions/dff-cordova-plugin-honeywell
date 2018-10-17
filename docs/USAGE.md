@@ -86,6 +86,27 @@ Honeywell
 
 # BarcodeReader
 
+# createBarcodeReader
+# closeBarcodeReader
+
+## getProfileNames
+## loadProfile
+
+## getProperties
+## setProperties
+
+## getAllProperties
+## getAllDefaultProperties
+
+# aim
+# decode
+# light
+
+## addBarcodeListener
+## addTriggerListener
+## removeBarcodeListener
+## removeTriggerListener
+
 ## onBarcodeEvent
 
 ```javascript
