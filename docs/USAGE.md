@@ -93,10 +93,52 @@ Honeywell
 ## loadProfile
 
 ## getProperties
+Get one or more properties with the argument of a JSON array.
+
+For all supported properties see the doumentation ?.
+
+A valid example argument is
+```json
+[
+	{"id": "PROPERTY_AZTEC_MAXIMUM_LENGTH"},
+	{"id": "DEC_ID_PROP_USE_ROI_DPM_AIMER_CENTERED"},
+	{"id": "TRIGGER_CONTROL_MODE_CLIENT_CONTROL"}
+];
+```
+
 ## setProperties
+Set one or more properties of the BarcodeReader with the argument as a JSON array. Please make sure to supply the rigth type of value.
+
+If a property can not be set due to an invalid id or invalid value an exception is thrown.
+
+For all supported properties see the doumentation ?.
+
+For String-Propertys use:
+```json
+{"id": "PROPERTY_STRING", "value": "VALUE"}```
+
+For Integer-Propertys use:
+```json
+{"id": "PROPERTY_INTEGER", "value": 0}```
+
+For Boolean-Propertys use:
+```json
+{"id": "PROPERTY_BOOLEAN", "value": false}```
+
+A valid example JSON is
+```json
+[
+	{"id": "PROPERTY_AZTEC_MAXIMUM_LENGTH", "value": 23},
+	{"id": "DEC_ID_PROP_USE_ROI_DPM_AIMER_CENTERED", "value": true},
+	{"id": "TRIGGER_CONTROL_MODE_CLIENT_CONTROL", "value": true}
+];
+```
 
 ## getAllProperties
+Use to get the values of all current properties.
+
 ## getAllDefaultProperties
+Use to get the values of all deafault properties.
 
 # aim
 # decode
