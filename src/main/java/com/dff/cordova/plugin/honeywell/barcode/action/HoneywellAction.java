@@ -19,12 +19,15 @@ public abstract class HoneywellAction extends CordovaAction {
 
 	// all return strings
 	public static final String BARCODE_READER_NOT_INIT = "Barcode reader not initialized";
+	public static final String BARCODE_READER_INIT = "Barcode reader initialized";
 	public static final String BARCODE_CLOSED_SUCCESS = "Barcode reader is closed successfully";
 	public static final String NO_BARCODE_READER_CONNECTED = "No barcode reader is connected.";
 	public static final String AICD_NOT_INIT = "AidcManager not initialized";
 	public static final String BARCODE_READER_ALREADY_ADDED = "A barcode reader is already connected.";
 	public static final String NO_CONNECTED_DEVICES = "No connected devices.";
 	public static final String LOST_DEVICE_CONNECTION = "Lost connection to connected barcode reader.";
+	public static final String PROFILE_LOADED = "Barcode reader profile loaded.";
+	public static final String PROPERTIES_SET = "All properties set.";
 
 	public JSONObject returnJSONObject(String msg)
 	{

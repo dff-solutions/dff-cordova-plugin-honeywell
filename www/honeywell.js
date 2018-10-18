@@ -20,7 +20,13 @@ var actions = [
     "listBarcodeDevices",
     "listConnectedBarcodeDevices",
     "createBarcodeReader",
-    "closeBarcodeReader"
+    "closeBarcodeReader",
+    "barcodeReaderGetProfileNames",
+    "barcodeReaderLoadProfile",
+    "barcodeReaderSetProperties",
+    "barcodeReaderGetProperties",
+    "barcodeReaderGetAllProperties",
+    "barcodeReaderGetAllDefaultProperties"
 ];
 
 function createActionFunction (action) {
