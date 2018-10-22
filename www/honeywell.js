@@ -15,22 +15,22 @@ var actions = [
     "onLog",
     "onBarcodeEvent",
     "onFailureEvent",
-    "barcodeReaderPressSoftwareTrigger",
-    "barcodeReaderGetInfo",
-    "listBarcodeDevices",
-    "listConnectedBarcodeDevices",
-    "createBarcodeReader",
-    "closeBarcodeReader",
-    "barcodeReaderGetProfileNames",
-    "barcodeReaderLoadProfile",
-    "barcodeReaderSetProperties",
-    "barcodeReaderGetProperties",
+    "barcodeReaderGetAllDefaultProperties",
     "barcodeReaderGetAllProperties",
-    "barcodeReaderGetAllDefaultProperties"
+    "barcodeReaderGetInfo",
+    "barcodeReaderGetProfileNames",
+    "barcodeReaderGetProperties",
+    "barcodeReaderLoadProfile",
+    "barcodeReaderPressSoftwareTrigger",
+    "barcodeReaderSetProperties",
+    "closeBarcodeReader",
+    "createBarcodeReader",
+    "listBarcodeDevices",
+    "listConnectedBarcodeDevices"
 ];
 
 // These properties are taken from BarcodeReader class from DataCollection API version 1.9.
-var Properties = Object.freeze({
+self.Properties = Object.freeze({
 	"PROPERTY_IMAGER_LIGHT_INTENSITY": "IMG_ILLUM_INTENSITY",
 	"PROPERTY_IMAGER_EXPOSURE": "IMG_EXPOSURE",
 	"PROPERTY_IMAGER_GAIN": "IMG_GAIN",
