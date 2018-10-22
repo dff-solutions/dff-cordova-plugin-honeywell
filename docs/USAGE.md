@@ -311,4 +311,4 @@ Honeywell
 
 # <a name="properties"></a>BarcodeReader Properties
 
-A list of all valid properties from DataCollection API version 1.9.
+All valid BarcodeReader properties from DataCollection API version 1.9 can be found under Honeywell.Properties.[PROPERTY_NAME].
