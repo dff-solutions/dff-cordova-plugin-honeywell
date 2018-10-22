@@ -63,10 +63,7 @@ public class BarcodeReaderGetProperties extends HoneywellAction {
         Set<String> set = new HashSet<>();
 
         for (int i = 0; i < jsonArray.length(); i++) {
-            JSONObject jsonEntry = jsonArray.getJSONObject(i);
-
-            String identifier = jsonEntry.getString("id");
-            set.add(identifier);
+            set.add((String)jsonArray.get(i));
         }
 
         return set;
