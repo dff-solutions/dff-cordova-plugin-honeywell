@@ -134,9 +134,9 @@ Get one or more properties with the argument as a JSON array.
 A valid example argument is
 ```json
 [
-	{"id": Honeywell.Properties.PROPERTY_AZTEC_MAXIMUM_LENGTH},
-	{"id": Honeywell.Properties.DEC_ID_PROP_USE_ROI_DPM_AIMER_CENTERED},
-	{"id": Honeywell.Properties.TRIGGER_CONTROL_MODE_CLIENT_CONTROL}
+	Honeywell.Properties.PROPERTY_AZTEC_MAXIMUM_LENGTH,
+	Honeywell.Properties.DEC_ID_PROP_USE_ROI_DPM_AIMER_CENTERED,
+	Honeywell.Properties.TRIGGER_CONTROL_MODE_CLIENT_CONTROL
 ];
 ```
 
@@ -165,25 +165,25 @@ Set one or more properties of the BarcodeReader with the argument as a JSON arra
 
 For String-Properties use:
 ```json
-{"id": "PROPERTY_STRING", "value": "VALUE"}
+{"name": "PROPERTY_STRING", "value": "VALUE"}
 ```
 
 For Integer-Properties use:
 ```json
-{"id": "PROPERTY_INTEGER", "value": 0}
+{"name": "PROPERTY_INTEGER", "value": 0}
 ```
 
 For Boolean-Properties use:
 ```json
-{"id": "PROPERTY_BOOLEAN", "value": false}
+{"name": "PROPERTY_BOOLEAN", "value": false}
 ```
 
 A valid example JSON is:
 ```json
 [
-	{"id": Honeywell.Properties.PROPERTY_AZTEC_MAXIMUM_LENGTH, "value": 23}, 
-	{"id": Honeywell.Properties.DEC_ID_PROP_USE_ROI_DPM_AIMER_CENTERED, "value": true},
-	{"id": Honeywell.Properties.TRIGGER_CONTROL_MODE_CLIENT_CONTROL, "value": true}
+	{"name": Honeywell.Properties.PROPERTY_AZTEC_MAXIMUM_LENGTH, "value": 23}, 
+	{"name": Honeywell.Properties.DEC_ID_PROP_USE_ROI_DPM_AIMER_CENTERED, "value": true},
+	{"name": Honeywell.Properties.TRIGGER_CONTROL_MODE_CLIENT_CONTROL, "value": true}
 ];
 ```
 
