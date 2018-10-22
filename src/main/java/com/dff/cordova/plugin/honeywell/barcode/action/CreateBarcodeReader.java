@@ -3,6 +3,7 @@ package com.dff.cordova.plugin.honeywell.barcode.action;
 import com.dff.cordova.plugin.common.log.CordovaPluginLog;
 import com.dff.cordova.plugin.honeywell.HoneywellPlugin;
 import com.dff.cordova.plugin.honeywell.barcode.BarcodeListener;
+import com.dff.cordova.plugin.honeywell.common.BarcodeReaderManager;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.honeywell.aidc.*;
@@ -19,9 +20,9 @@ public class CreateBarcodeReader extends HoneywellAction {
     public static final String ACTION_NAME = "createBarcodeReader";
 
     public CreateBarcodeReader(String action, JSONArray args, CallbackContext callbackContext,
-                                       CordovaInterface cordova, BarcodeReader barcodeReader, AidcManager aidcManager,
+                               CordovaInterface cordova, BarcodeReaderManager barcodeReaderManager, AidcManager aidcManager,
                                BarcodeListener barcodeListener) {
-        super(action, args, callbackContext, cordova, barcodeReader,  aidcManager, barcodeListener);
+        super(action, args, callbackContext, cordova, barcodeReaderManager,  aidcManager, barcodeListener);
     }
 
     public static final String JSON_ARGS_NAME = "scanner_name";
@@ -34,25 +35,25 @@ public class CreateBarcodeReader extends HoneywellAction {
             if(this.aidcManager != null) {
 
                 // check for already connected barcode reader
-                if(this.barcodeReader == null) {
+                if(this.barcodeReaderManager.getInstance() == null) {
 
                     // get optional name parameter
-                    JSONObject jsonArgs = super.checkJsonArgs(this.args, JSON_ARGS);
-                    String scanner_name = jsonArgs.getString(JSON_ARGS_NAME);
+                    JSONObject jsonArgs = super.checkJsonArgs(args, null);
+                    String scanner_name = jsonArgs.optString(JSON_ARGS_NAME, null);
 
                     try
                     {
                         // create new barcode reader with no properties set
                         if(scanner_name == null) {
-                            this.barcodeReader = this.aidcManager.createBarcodeReader();
+                            this.barcodeReaderManager.setInstance(this.aidcManager.createBarcodeReader());
                         }
                         else
                         {
-                            this.barcodeReader = this.aidcManager.createBarcodeReader(scanner_name);
+                            this.barcodeReaderManager.setInstance(this.aidcManager.createBarcodeReader(scanner_name));
                         }
 
-                        this.barcodeReader.claim();
-                        this.barcodeReader.addBarcodeListener(this.barcodeListener);
+                        this.barcodeReaderManager.getInstance().claim();
+                        this.barcodeReaderManager.getInstance().addBarcodeListener(this.barcodeListener);
                         this.callbackContext.success(BARCODE_READER_INIT);
                     }
                     catch (ScannerUnavailableException e) {

@@ -1,6 +1,7 @@
 package com.dff.cordova.plugin.honeywell.barcode.action;
 
 import com.dff.cordova.plugin.honeywell.barcode.BarcodeListener;
+import com.dff.cordova.plugin.honeywell.common.BarcodeReaderManager;
 import com.google.gson.JsonObject;
 import com.honeywell.aidc.AidcManager;
 import org.apache.cordova.CallbackContext;
@@ -13,7 +14,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public abstract class HoneywellAction extends CordovaAction {
-	protected BarcodeReader barcodeReader;
+	protected BarcodeReaderManager barcodeReaderManager;
 	protected AidcManager aidcManager;
 	protected BarcodeListener barcodeListener;
 
@@ -45,10 +46,10 @@ public abstract class HoneywellAction extends CordovaAction {
 	}
 
 	public HoneywellAction(String action, JSONArray args, CallbackContext callbackContext, CordovaInterface cordova,
-	        BarcodeReader barcodeReader,  AidcManager aidcManager, BarcodeListener barcodelistener) {
+						   BarcodeReaderManager barcodeReaderManager, AidcManager aidcManager, BarcodeListener barcodelistener) {
 		super(action, args, callbackContext, cordova);
 
-		this.barcodeReader = barcodeReader;
+		this.barcodeReaderManager = barcodeReaderManager;
 		this.aidcManager = aidcManager;
 		this.barcodeListener = barcodelistener;
 	}

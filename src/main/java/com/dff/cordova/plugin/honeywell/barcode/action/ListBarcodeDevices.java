@@ -2,6 +2,7 @@ package com.dff.cordova.plugin.honeywell.barcode.action;
 
 import com.dff.cordova.plugin.common.log.CordovaPluginLog;
 import com.dff.cordova.plugin.honeywell.barcode.BarcodeListener;
+import com.dff.cordova.plugin.honeywell.common.BarcodeReaderManager;
 import com.dff.cordova.plugin.honeywell.common.GsonNamingStrategy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -20,9 +21,9 @@ public class ListBarcodeDevices extends HoneywellAction {
     public static final String ACTION_NAME = "listBarcodeDevices";
 
     public ListBarcodeDevices(String action, JSONArray args, CallbackContext callbackContext,
-                              CordovaInterface cordova, BarcodeReader barcodeReader, AidcManager aidcManager,
+                              CordovaInterface cordova, BarcodeReaderManager barcodeReaderManager, AidcManager aidcManager,
                               BarcodeListener barcodeListener) {
-        super(action, args, callbackContext, cordova, barcodeReader,  aidcManager, barcodeListener);
+        super(action, args, callbackContext, cordova, barcodeReaderManager,  aidcManager, barcodeListener);
     }
 
     @Override

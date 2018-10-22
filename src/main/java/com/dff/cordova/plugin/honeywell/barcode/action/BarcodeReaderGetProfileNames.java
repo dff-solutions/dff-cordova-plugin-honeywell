@@ -2,6 +2,7 @@ package com.dff.cordova.plugin.honeywell.barcode.action;
 
 import com.dff.cordova.plugin.common.log.CordovaPluginLog;
 import com.dff.cordova.plugin.honeywell.barcode.BarcodeListener;
+import com.dff.cordova.plugin.honeywell.common.BarcodeReaderManager;
 import com.dff.cordova.plugin.honeywell.common.GsonNamingStrategy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -21,16 +22,16 @@ public class BarcodeReaderGetProfileNames extends HoneywellAction {
     public static final String ACTION_NAME = "barcodeReaderGetProfileNames";
 
     public BarcodeReaderGetProfileNames(String action, JSONArray args, CallbackContext callbackContext,
-                                CordovaInterface cordova, BarcodeReader barcodeReader, AidcManager aidcManager,
-                                BarcodeListener barcodeListener) {
-        super(action, args, callbackContext, cordova, barcodeReader, aidcManager, barcodeListener);
+                                        CordovaInterface cordova, BarcodeReaderManager barcodeReaderManager, AidcManager aidcManager,
+                                        BarcodeListener barcodeListener) {
+        super(action, args, callbackContext, cordova, barcodeReaderManager, aidcManager, barcodeListener);
     }
 
     @Override
     public void run() {
         try {
-            if(this.barcodeReader != null) {
-                List<String> list = this.barcodeReader.getProfileNames();
+            if(this.barcodeReaderManager.getInstance() != null) {
+                List<String> list = this.barcodeReaderManager.getInstance().getProfileNames();
 
                 Gson gson = new GsonBuilder().setFieldNamingStrategy(new GsonNamingStrategy()).create();
                 String json = gson.toJson(list);

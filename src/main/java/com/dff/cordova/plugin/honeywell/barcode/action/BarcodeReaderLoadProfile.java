@@ -2,6 +2,7 @@ package com.dff.cordova.plugin.honeywell.barcode.action;
 
 import com.dff.cordova.plugin.common.log.CordovaPluginLog;
 import com.dff.cordova.plugin.honeywell.barcode.BarcodeListener;
+import com.dff.cordova.plugin.honeywell.common.BarcodeReaderManager;
 import com.dff.cordova.plugin.honeywell.common.GsonNamingStrategy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -20,9 +21,9 @@ public class BarcodeReaderLoadProfile extends HoneywellAction {
     public static final String ACTION_NAME = "barcodeReaderLoadProfile";
 
     public BarcodeReaderLoadProfile(String action, JSONArray args, CallbackContext callbackContext,
-                                        CordovaInterface cordova, BarcodeReader barcodeReader, AidcManager aidcManager,
-                                        BarcodeListener barcodeListener) {
-        super(action, args, callbackContext, cordova, barcodeReader, aidcManager, barcodeListener);
+                                    CordovaInterface cordova, BarcodeReaderManager barcodeReaderManager, AidcManager aidcManager,
+                                    BarcodeListener barcodeListener) {
+        super(action, args, callbackContext, cordova, barcodeReaderManager, aidcManager, barcodeListener);
     }
 
     public static final String JSON_ARGS_NAME = "name";
@@ -32,12 +33,12 @@ public class BarcodeReaderLoadProfile extends HoneywellAction {
     public void run() {
         try {
 
-            if(this.barcodeReader != null) {
+            if(this.barcodeReaderManager.getInstance() != null) {
                 // get name parameter
                 JSONObject jsonArgs = super.checkJsonArgs(this.args, JSON_ARGS);
                 String name = jsonArgs.getString(JSON_ARGS_NAME);
 
-                this.barcodeReader.loadProfile(name);
+                this.barcodeReaderManager.getInstance().loadProfile(name);
 
                 this.callbackContext.success(PROFILE_LOADED);
             }

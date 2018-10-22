@@ -2,6 +2,7 @@ package com.dff.cordova.plugin.honeywell.barcode.action;
 
 import com.dff.cordova.plugin.common.log.CordovaPluginLog;
 import com.dff.cordova.plugin.honeywell.barcode.BarcodeListener;
+import com.dff.cordova.plugin.honeywell.common.BarcodeReaderManager;
 import com.dff.cordova.plugin.honeywell.common.GsonNamingStrategy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -27,15 +28,15 @@ public class BarcodeReaderSetProperties extends HoneywellAction {
     public static final String[] JSON_ARGS = { JSON_ARGS_DATA };
 
     public BarcodeReaderSetProperties(String action, JSONArray args, CallbackContext callbackContext,
-                                      CordovaInterface cordova, BarcodeReader barcodeReader, AidcManager aidcManager,
+                                      CordovaInterface cordova, BarcodeReaderManager barcodeReaderManager, AidcManager aidcManager,
                                       BarcodeListener barcodeListener) {
-        super(action, args, callbackContext, cordova, barcodeReader, aidcManager, barcodeListener);
+        super(action, args, callbackContext, cordova, barcodeReaderManager, aidcManager, barcodeListener);
     }
 
     @Override
     public void run() {
         try {
-            if(this.barcodeReader != null) {
+            if(this.barcodeReaderManager.getInstance() != null) {
                 JSONObject jsonArgs = super.checkJsonArgs(this.args, JSON_ARGS);
                 JSONArray data = jsonArgs.getJSONArray(JSON_ARGS_DATA);
 
@@ -66,11 +67,11 @@ public class BarcodeReaderSetProperties extends HoneywellAction {
             Object value = json.get("value");
 
             if(value instanceof String) {
-                this.barcodeReader.setProperty(identifier, (String) value);
+                this.barcodeReaderManager.getInstance().setProperty(identifier, (String) value);
             } else if (value instanceof Integer) {
-                this.barcodeReader.setProperty(identifier, (int) value);
+                this.barcodeReaderManager.getInstance().setProperty(identifier, (int) value);
             } else if (value instanceof Boolean) {
-                this.barcodeReader.setProperty(identifier, (boolean) value);
+                this.barcodeReaderManager.getInstance().setProperty(identifier, (boolean) value);
             } else {
                 throw new IllegalArgumentException(String.format("Invalid Type: \"%s\" as value for identifier \"%s\"", value.getClass(), identifier));
             }

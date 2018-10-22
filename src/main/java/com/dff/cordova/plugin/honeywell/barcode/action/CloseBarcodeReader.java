@@ -2,6 +2,7 @@ package com.dff.cordova.plugin.honeywell.barcode.action;
 
 import com.dff.cordova.plugin.common.log.CordovaPluginLog;
 import com.dff.cordova.plugin.honeywell.barcode.BarcodeListener;
+import com.dff.cordova.plugin.honeywell.common.BarcodeReaderManager;
 import com.honeywell.aidc.AidcManager;
 import com.honeywell.aidc.BarcodeReader;
 import com.honeywell.aidc.ScannerUnavailableException;
@@ -15,9 +16,9 @@ public class CloseBarcodeReader extends HoneywellAction {
     public static final String ACTION_NAME = "closeBarcodeReader";
 
     public CloseBarcodeReader(String action, JSONArray args, CallbackContext callbackContext,
-                               CordovaInterface cordova, BarcodeReader barcodeReader, AidcManager aidcManager,
-                               BarcodeListener barcodeListener) {
-        super(action, args, callbackContext, cordova, barcodeReader,  aidcManager, barcodeListener);
+                              CordovaInterface cordova, BarcodeReaderManager barcodeReaderManager, AidcManager aidcManager,
+                              BarcodeListener barcodeListener) {
+        super(action, args, callbackContext, cordova, barcodeReaderManager,  aidcManager, barcodeListener);
     }
 
     @Override
@@ -27,11 +28,12 @@ public class CloseBarcodeReader extends HoneywellAction {
             if(this.aidcManager != null) {
 
                 // check for already claimed barcode reader
-                if(this.barcodeReader != null) {
+                if(this.barcodeReaderManager.getInstance() != null) {
 
                     // unregister listener and close the reader completely
-                    this.barcodeReader.removeBarcodeListener(this.barcodeListener);
-                    this.barcodeReader.close();
+                    this.barcodeReaderManager.getInstance().removeBarcodeListener(this.barcodeListener);
+                    this.barcodeReaderManager.getInstance().close();
+                    this.barcodeReaderManager.setInstance(null);
                     this.callbackContext.success(BARCODE_CLOSED_SUCCESS);
                 }
                 else

@@ -1,6 +1,7 @@
 package com.dff.cordova.plugin.honeywell;
 
 import com.dff.cordova.plugin.honeywell.barcode.action.*;
+import com.dff.cordova.plugin.honeywell.common.BarcodeReaderManager;
 import com.honeywell.aidc.*;
 import org.apache.cordova.CallbackContext;
 import org.json.JSONArray;
@@ -18,7 +19,7 @@ public class HoneywellPlugin extends CommonPlugin {
 
     private static final String LOG_TAG = "com.dff.cordova.plugin.honeywell.HoneywellPlugin";
     private AidcManager aidcManager;
-    private BarcodeReader barcodeReader;
+    private BarcodeReaderManager barcodeReaderManager;
     private BarcodeListener barcodeListener;
 
     public HoneywellPlugin() {
@@ -33,6 +34,7 @@ public class HoneywellPlugin extends CommonPlugin {
         super.pluginInitialize();
 
         this.barcodeListener = new BarcodeListener();
+        this.barcodeReaderManager = new BarcodeReaderManager();
 
         AidcManager.create(this.cordova.getActivity(), new CreatedCallback() {
 
@@ -45,9 +47,9 @@ public class HoneywellPlugin extends CommonPlugin {
                 // ADDED BARCODE READER CREATE, UNCOMMENT FOR TESTING
                 /*
                 try {
-                    HoneywellPlugin.this.barcodeReader = aidcManager.createBarcodeReader();
-                    HoneywellPlugin.this.barcodeReader.claim();
-                    HoneywellPlugin.this.barcodeReader.addBarcodeListener(HoneywellPlugin.this.barcodeListener);
+                    barcodeReaderManager.setInstance(aidcManager.createBarcodeReader());
+                    barcodeReaderManager.getInstance().claim();
+                    barcodeReaderManager.getInstance().addBarcodeListener(HoneywellPlugin.this.barcodeListener);
                 }
                 catch (Exception e)
                 {
@@ -71,10 +73,10 @@ public class HoneywellPlugin extends CommonPlugin {
                             // a barcode device was removed
 
                             // check for connected barcode reader
-                            if (HoneywellPlugin.this.barcodeReader != null) {
+                            if (barcodeReaderManager.getInstance() != null) {
                                 try {
                                     // get name of currently connected device
-                                    String name = HoneywellPlugin.this.barcodeReader.getInfo().getName();
+                                    String name = barcodeReaderManager.getInstance().getInfo().getName();
 
                                     // check for lost connection
                                     if (barcodeDeviceConnectionEvent.getBarcodeReaderInfo().getName().equals(name)) {
@@ -96,9 +98,9 @@ public class HoneywellPlugin extends CommonPlugin {
 
     private void closeAndNullBarcodeReader()
     {
-        HoneywellPlugin.this.barcodeReader.removeBarcodeListener(HoneywellPlugin.this.barcodeListener);
-        HoneywellPlugin.this.barcodeReader.close();
-        HoneywellPlugin.this.barcodeReader = null;
+        barcodeReaderManager.getInstance().removeBarcodeListener(HoneywellPlugin.this.barcodeListener);
+        barcodeReaderManager.getInstance().close();
+        barcodeReaderManager.setInstance(null);
     }
 
     /**
@@ -110,11 +112,11 @@ public class HoneywellPlugin extends CommonPlugin {
     public void onResume(boolean multitasking) {
         super.onResume(multitasking);
 
-        if (this.barcodeReader != null) {
+        if (barcodeReaderManager.getInstance() != null) {
             CordovaPluginLog.d(LOG_TAG, "claim barcode reader");
 
             try {
-                this.barcodeReader.claim();
+                barcodeReaderManager.getInstance().claim();
             } catch (ScannerUnavailableException e) {
                 CordovaPluginLog.e(LOG_TAG, e.getMessage(), e);
             }
@@ -129,11 +131,11 @@ public class HoneywellPlugin extends CommonPlugin {
     @Override
     public void onPause(boolean multitasking) {
         super.onPause(multitasking);
-        if (this.barcodeReader != null) {
+        if (barcodeReaderManager.getInstance() != null) {
             CordovaPluginLog.d(LOG_TAG, "release barcode reader");
             // release the scanner claim so we don't get any scanner
             // notifications while paused.
-            this.barcodeReader.release();
+            barcodeReaderManager.getInstance().release();
         }
     }
 
@@ -144,13 +146,13 @@ public class HoneywellPlugin extends CommonPlugin {
     public void onDestroy() {
         super.onDestroy();
 
-        if (this.barcodeReader != null) {
+        if (barcodeReaderManager.getInstance() != null) {
             // unregister barcode event listener
-            this.barcodeReader.removeBarcodeListener(this.barcodeListener);
+            barcodeReaderManager.getInstance().removeBarcodeListener(this.barcodeListener);
 
             // close BarcodeReader to clean up resources.
             // once closed, the object can no longer be used.
-            this.barcodeReader.close();
+            barcodeReaderManager.getInstance().close();
         }
         if (this.aidcManager != null) {
             // close AidcManager to disconnect from the scanner service.
@@ -190,40 +192,40 @@ public class HoneywellPlugin extends CommonPlugin {
             return true;
         } else if (BarcodeReaderPressSoftwareTrigger.ACTION_NAME.equals(action)) {
             cordovaAction = new BarcodeReaderPressSoftwareTrigger(action, args, callbackContext, this.cordova,
-                    this.barcodeReader, this.aidcManager, this.barcodeListener);
+                    this.barcodeReaderManager, this.aidcManager, this.barcodeListener);
         } else if (BarcodeReaderGetInfo.ACTION_NAME.equals(action)) {
             cordovaAction = new BarcodeReaderGetInfo(action, args, callbackContext, this.cordova,
-                    this.barcodeReader, this.aidcManager, this.barcodeListener);
+                    this.barcodeReaderManager, this.aidcManager, this.barcodeListener);
         } else if (ListBarcodeDevices.ACTION_NAME.equals(action)) {
             cordovaAction = new ListBarcodeDevices(action, args, callbackContext, this.cordova,
-                    this.barcodeReader, this.aidcManager, this.barcodeListener);
+                    this.barcodeReaderManager, this.aidcManager, this.barcodeListener);
         } else if (ListConnectedBarcodeDevices.ACTION_NAME.equals(action)) {
             cordovaAction = new ListConnectedBarcodeDevices(action, args, callbackContext, this.cordova,
-                    this.barcodeReader, this.aidcManager, this.barcodeListener);
+                    this.barcodeReaderManager, this.aidcManager, this.barcodeListener);
         } else if (CreateBarcodeReader.ACTION_NAME.equals(action)) {
             cordovaAction = new CreateBarcodeReader(action, args, callbackContext, this.cordova,
-                this.barcodeReader, this.aidcManager, this.barcodeListener);
+                this.barcodeReaderManager, this.aidcManager, this.barcodeListener);
         } else if (CloseBarcodeReader.ACTION_NAME.equals(action)) {
             cordovaAction = new CloseBarcodeReader(action, args, callbackContext, this.cordova,
-                this.barcodeReader, this.aidcManager, this.barcodeListener);
+                this.barcodeReaderManager, this.aidcManager, this.barcodeListener);
         } else if (BarcodeReaderGetProfileNames.ACTION_NAME.equals(action)) {
             cordovaAction = new BarcodeReaderGetProfileNames(action, args, callbackContext, this.cordova,
-                    this.barcodeReader, this.aidcManager, this.barcodeListener);
+                    this.barcodeReaderManager, this.aidcManager, this.barcodeListener);
         } else if (BarcodeReaderLoadProfile.ACTION_NAME.equals(action)) {
             cordovaAction = new BarcodeReaderLoadProfile(action, args, callbackContext, this.cordova,
-            this.barcodeReader, this.aidcManager, this.barcodeListener);
+                    this.barcodeReaderManager, this.aidcManager, this.barcodeListener);
         } else if (BarcodeReaderSetProperties.ACTION_NAME.equals(action)) {
             cordovaAction = new BarcodeReaderSetProperties(action, args, callbackContext, this.cordova,
-                    this.barcodeReader, this.aidcManager, this.barcodeListener);
+                    this.barcodeReaderManager, this.aidcManager, this.barcodeListener);
         } else if (BarcodeReaderGetProperties.ACTION_NAME.equals(action)) {
             cordovaAction = new BarcodeReaderGetProperties(action, args, callbackContext, this.cordova,
-                    this.barcodeReader, this.aidcManager, this.barcodeListener);
+                    this.barcodeReaderManager, this.aidcManager, this.barcodeListener);
         } else if (BarcodeReaderGetAllProperties.ACTION_NAME.equals(action)) {
             cordovaAction = new BarcodeReaderGetAllProperties(action, args, callbackContext, this.cordova,
-                    this.barcodeReader, this.aidcManager, this.barcodeListener);
+                    this.barcodeReaderManager, this.aidcManager, this.barcodeListener);
         } else if (BarcodeReaderGetAllDefaultProperties.ACTION_NAME.equals(action)) {
             cordovaAction = new BarcodeReaderGetAllDefaultProperties(action, args, callbackContext, this.cordova,
-                    this.barcodeReader, this.aidcManager, this.barcodeListener);
+                    this.barcodeReaderManager, this.aidcManager, this.barcodeListener);
         }
 
         if (cordovaAction != null) {

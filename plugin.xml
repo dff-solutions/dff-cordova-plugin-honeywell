@@ -1,15 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    id="dff-cordova-plugin-honeywell"
-    version="0.0.2">
+<?xml version='1.0' encoding='utf-8'?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="dff-cordova-plugin-honeywell" version="0.0.2">
 
     <name>Honeywell</name>
     <description>Honeywell Plugin</description>
     <author>dff solutions</author>
     <keywords>phonegap,cordova,honeywell,dff</keywords>
     
-     <js-module src="www/honeywell.js" name="honeywell">
+     <js-module name="honeywell" src="www/honeywell.js">
         <clobbers target="Honeywell" />
     </js-module>
     
@@ -17,14 +14,14 @@
  
     <!-- android -->
     <platform name="android">
-        <config-file target="res/xml/config.xml" parent="/*">
+        <config-file parent="/*" target="res/xml/config.xml">
             <feature name="Honeywell">
-                <param name="android-package" value="com.dff.cordova.plugin.honeywell.HoneywellPlugin"/>
+                <param name="android-package" value="com.dff.cordova.plugin.honeywell.HoneywellPlugin" />
                 <param name="onload" value="true" />
             </feature>
         </config-file>
     
-        <config-file target="AndroidManifest.xml" parent="/manifest">
+        <config-file parent="/manifest" target="AndroidManifest.xml">
         	<uses-permission android:name="com.honeywell.decode.permission.DECODE" /> 
         </config-file>
         
@@ -41,7 +38,8 @@
         <source-file src="src/main/java/com/dff/cordova/plugin/honeywell/barcode/action/CreateBarcodeReader.java" target-dir="src/main/java/com/dff/cordova/plugin/honeywell/barcode/action" />
         <source-file src="src/main/java/com/dff/cordova/plugin/honeywell/barcode/action/ListConnectedBarcodeDevices.java" target-dir="src/main/java/com/dff/cordova/plugin/honeywell/barcode/action" />
         <source-file src="src/main/java/com/dff/cordova/plugin/honeywell/barcode/action/ListBarcodeDevices.java" target-dir="src/main/java/com/dff/cordova/plugin/honeywell/barcode/action" />
-        <source-file src="src/main/java/com/dff/cordova/plugin/honeywell/common/GsonNamingStrategy.java" target-dir="src/main/java/com/dff/cordova/plugin/honeywell/barcode/action" />
+        <source-file src="src/main/java/com/dff/cordova/plugin/honeywell/common/GsonNamingStrategy.java" target-dir="src/main/java/com/dff/cordova/plugin/honeywell/common" />
+        <source-file src="src/main/java/com/dff/cordova/plugin/honeywell/common/BarcodeReaderManager.java" target-dir="src/main/java/com/dff/cordova/plugin/honeywell/common" />
         <source-file src="src/main/java/com/dff/cordova/plugin/honeywell/barcode/action/BarcodeReaderGetInfo.java" target-dir="src/main/java/com/dff/cordova/plugin/honeywell/barcode/action" />
         <source-file src="src/main/java/com/dff/cordova/plugin/honeywell/barcode/action/BarcodeReaderPressSoftwareTrigger.java" target-dir="src/main/java/com/dff/cordova/plugin/honeywell/barcode/action" />
         <source-file src="src/main/java/com/dff/cordova/plugin/honeywell/barcode/action/HoneywellAction.java" target-dir="src/main/java/com/dff/cordova/plugin/honeywell/barcode/action" />
@@ -52,7 +50,6 @@
         <source-file src="src/main/java/com/dff/cordova/plugin/honeywell/json/model/JsonBarcodeEvent.java" target-dir="src/main/java/com/dff/cordova/plugin/honeywell/json/model" />
         <source-file src="src/main/java/com/dff/cordova/plugin/honeywell/json/model/JsonFailureEvent.java" target-dir="src/main/java/com/dff/cordova/plugin/honeywell/json/model" />
         <source-file src="src/main/java/com/dff/cordova/plugin/honeywell/json/model/JsonPoint.java" target-dir="src/main/java/com/dff/cordova/plugin/honeywell/json/model" />
-    
-     </platform>
-</plugin>
 
+    </platform>
+</plugin>
