@@ -44,19 +44,6 @@ public class HoneywellPlugin extends CommonPlugin {
                 CordovaPluginLog.d(LOG_TAG, "AidcManager created");
                 HoneywellPlugin.this.aidcManager = aidcManager;
 
-                // ADDED BARCODE READER CREATE, UNCOMMENT FOR TESTING
-                /*
-                try {
-                    barcodeReaderManager.setInstance(aidcManager.createBarcodeReader());
-                    barcodeReaderManager.getInstance().claim();
-                    barcodeReaderManager.getInstance().addBarcodeListener(HoneywellPlugin.this.barcodeListener);
-                }
-                catch (Exception e)
-                {
-                    e.printStackTrace();
-                }
-                */
-
                 // listener for connected and disconnection events of devices
                 HoneywellPlugin.this.aidcManager.addBarcodeDeviceListener(new AidcManager.BarcodeDeviceListener() {
                     @Override
