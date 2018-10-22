@@ -24,7 +24,7 @@ public class BarcodeReaderSetProperties extends HoneywellAction {
     private static final String TAG = "com.dff.cordova.plugin.honeywell.barcode.action.barcodeReaderGetProfileNames";
     public static final String ACTION_NAME = "barcodeReaderSetProperties";
 
-    public static final String JSON_ARGS_DATA = "data";
+    public static final String JSON_ARGS_DATA = "properties";
     public static final String[] JSON_ARGS = { JSON_ARGS_DATA };
 
     public BarcodeReaderSetProperties(String action, JSONArray args, CallbackContext callbackContext,
@@ -38,9 +38,9 @@ public class BarcodeReaderSetProperties extends HoneywellAction {
         try {
             if(this.barcodeReaderManager.getInstance() != null) {
                 JSONObject jsonArgs = super.checkJsonArgs(this.args, JSON_ARGS);
-                JSONArray data = jsonArgs.getJSONArray(JSON_ARGS_DATA);
+                JSONArray properties = jsonArgs.getJSONArray(JSON_ARGS_DATA);
 
-                setPropertysFromJSONArray(data);
+                setPropertysFromJSONArray(properties);
             }
             else {
                 this.callbackContext.error(BARCODE_READER_NOT_INIT);
@@ -63,7 +63,7 @@ public class BarcodeReaderSetProperties extends HoneywellAction {
     }
 
     public void setPropertyFromJSONObject(JSONObject json) throws JSONException, UnsupportedPropertyException {
-            String identifier = json.getString("id");
+            String identifier = json.getString("name");
             Object value = json.get("value");
 
             if(value instanceof String) {

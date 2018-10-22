@@ -25,7 +25,7 @@ public class CreateBarcodeReader extends HoneywellAction {
         super(action, args, callbackContext, cordova, barcodeReaderManager,  aidcManager, barcodeListener);
     }
 
-    public static final String JSON_ARGS_NAME = "scanner_name";
+    public static final String JSON_ARGS_NAME = "name";
     public static final String[] JSON_ARGS = { JSON_ARGS_NAME };
 
     @Override
@@ -39,17 +39,17 @@ public class CreateBarcodeReader extends HoneywellAction {
 
                     // get optional name parameter
                     JSONObject jsonArgs = super.checkJsonArgs(args, null);
-                    String scanner_name = jsonArgs.optString(JSON_ARGS_NAME, null);
+                    String name = jsonArgs.optString(JSON_ARGS_NAME, null);
 
                     try
                     {
                         // create new barcode reader with no properties set
-                        if(scanner_name == null) {
+                        if(name == null) {
                             this.barcodeReaderManager.setInstance(this.aidcManager.createBarcodeReader());
                         }
                         else
                         {
-                            this.barcodeReaderManager.setInstance(this.aidcManager.createBarcodeReader(scanner_name));
+                            this.barcodeReaderManager.setInstance(this.aidcManager.createBarcodeReader(name));
                         }
 
                         this.barcodeReaderManager.getInstance().claim();
