@@ -129,7 +129,7 @@ Honeywell
 ```
 
 ## getProperties
-Get one or more properties with the argument as a JSON array.
+Get one or more properties with the argument as a JSON array. Unsupported properties will not be read by DataCollection API and will be missing in the returned JSON.
 
 A valid example argument is
 ```json
