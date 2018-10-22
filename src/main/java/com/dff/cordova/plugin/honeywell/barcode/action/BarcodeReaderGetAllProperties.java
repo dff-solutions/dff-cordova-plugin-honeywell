@@ -10,6 +10,7 @@ import com.honeywell.aidc.BarcodeReader;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.List;
 import java.util.Map;
@@ -33,11 +34,12 @@ public class BarcodeReaderGetAllProperties extends HoneywellAction {
 
                 Gson gson = new GsonBuilder().setFieldNamingStrategy(new GsonNamingStrategy()).create();
                 String json = gson.toJson(mapAllProperties);
+                JSONObject jsonObj = new JSONObject(json);
 
-                this.callbackContext.success(json);
+                this.callbackContext.success(jsonObj);
             }
             else {
-                this.callbackContext.error(returnJSONObject(BARCODE_READER_NOT_INIT));
+                this.callbackContext.error(BARCODE_READER_NOT_INIT);
             }
         }
         catch (Exception e) {

@@ -44,7 +44,7 @@ public class ListBarcodeDevices extends HoneywellAction {
             {
                 // aidc manager is initialized in plugin init method.
                 // this error below should never occur.
-                callbackContext.error(returnJSONObject(AICD_NOT_INIT));
+                callbackContext.error(AICD_NOT_INIT);
             }
         }
         catch (Exception e) {

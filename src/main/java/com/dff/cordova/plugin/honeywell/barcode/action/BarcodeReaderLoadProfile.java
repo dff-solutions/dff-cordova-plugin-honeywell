@@ -39,10 +39,10 @@ public class BarcodeReaderLoadProfile extends HoneywellAction {
 
                 this.barcodeReader.loadProfile(name);
 
-                this.callbackContext.success(returnJSONObject(PROFILE_LOADED));
+                this.callbackContext.success(PROFILE_LOADED);
             }
             else {
-                this.callbackContext.error(returnJSONObject(BARCODE_READER_NOT_INIT));
+                this.callbackContext.error(BARCODE_READER_NOT_INIT);
             }
         }
         catch (Exception e) {

@@ -45,10 +45,11 @@ public class BarcodeReaderGetProperties extends HoneywellAction {
                 // convert to JSON
                 Gson gson = new GsonBuilder().setFieldNamingStrategy(new GsonNamingStrategy()).create();
                 String json = gson.toJson(properties);
+                JSONObject jsonObj = new JSONObject(json);
 
-                this.callbackContext.success(json);
+                this.callbackContext.success(jsonObj);
             } else {
-                this.callbackContext.error(returnJSONObject(BARCODE_READER_NOT_INIT));
+                this.callbackContext.error(BARCODE_READER_NOT_INIT);
             }
         }
         catch (Exception e) {

@@ -11,6 +11,7 @@ import com.honeywell.aidc.BarcodeReaderInfo;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -40,15 +41,16 @@ public class ListConnectedBarcodeDevices extends HoneywellAction {
                         // Gson conversion code
                         Gson gson = new GsonBuilder().setFieldNamingStrategy(new GsonNamingStrategy()).create();
                         String json = gson.toJson(listOfConnectedBarcodeReaders);
+                        JSONObject jsonObj = new JSONObject(json);
 
-                        this.callbackContext.success(json);
+                        this.callbackContext.success(jsonObj);
                     }
             }
             else
             {
                 // aidc manager is initialized in plugin init method.
                 // this error below should never occur.
-                callbackContext.error(returnJSONObject(AICD_NOT_INIT));
+                callbackContext.error(AICD_NOT_INIT);
             }
         }
         catch (Exception e) {

@@ -14,6 +14,7 @@ import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
 import org.json.JSONArray;
 import com.google.gson.Gson;
+import org.json.JSONObject;
 
 public class BarcodeReaderGetInfo extends HoneywellAction {
 
@@ -38,6 +39,7 @@ public class BarcodeReaderGetInfo extends HoneywellAction {
                 // Gson conversion code
                 Gson gson = new GsonBuilder().setFieldNamingStrategy(new GsonNamingStrategy()).create();
                 String json = gson.toJson(info);
+                JSONObject jsonObj = new JSONObject(json);
 
                 /*
                 explicit JSON generation with put() method
@@ -55,10 +57,10 @@ public class BarcodeReaderGetInfo extends HoneywellAction {
 
                 */
 
-                this.callbackContext.success(json);
+                this.callbackContext.success(jsonObj);
             }
             else {
-                this.callbackContext.error(returnJSONObject(BARCODE_READER_NOT_INIT));
+                this.callbackContext.error(BARCODE_READER_NOT_INIT);
             }
         }
         catch (Exception e) {

@@ -53,7 +53,7 @@ public class CreateBarcodeReader extends HoneywellAction {
 
                         this.barcodeReader.claim();
                         this.barcodeReader.addBarcodeListener(this.barcodeListener);
-                        this.callbackContext.success(returnJSONObject(BARCODE_READER_INIT));
+                        this.callbackContext.success(BARCODE_READER_INIT);
                     }
                     catch (ScannerUnavailableException e) {
                         this.callbackContext.error("Exception: " + e.getMessage());
@@ -68,14 +68,14 @@ public class CreateBarcodeReader extends HoneywellAction {
                 else
                 {
                     // a reader is already connected
-                    this.callbackContext.error(returnJSONObject(BARCODE_READER_ALREADY_ADDED));
+                    this.callbackContext.error(BARCODE_READER_ALREADY_ADDED);
                 }
             }
             else
             {
                 // aidc manager is initialized from pluginInitialize method.
                 // this error below should never occur.
-                callbackContext.error(returnJSONObject(AICD_NOT_INIT));
+                callbackContext.error(AICD_NOT_INIT);
             }
         }
         catch (Exception e) {
