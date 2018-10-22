@@ -62,6 +62,8 @@ Honeywell
         console.log(data);
     }, function (reason) {
         console.error(reason);
+    }, {
+        name: "scanner_name"
     });
 ```
 
@@ -86,68 +88,169 @@ Honeywell
 
 # BarcodeReader
 
-# createBarcodeReader
-# closeBarcodeReader
-
 ## getProfileNames
+Get a list of all available profile names.
+
+```javascript
+/**
+ * @name getProfileNames
+ * @function
+ * @param {function} success Callback for success
+ * @param {function} error Callback for error
+ * @param {Object} args Named arguments
+ */
+Honeywell
+    .getProfileNames(function (data) {
+        console.log(data);
+    }, function (reason) {
+        console.error(reason);
+    });
+```
+
 ## loadProfile
+Load a profile by name. An invalid profile name throws an exception.
+
+```javascript
+/**
+ * @name loadProfile
+ * @function
+ * @param {function} success Callback for success
+ * @param {function} error Callback for error
+ * @param {Object} args Named arguments
+ */
+Honeywell
+    .loadProfile(function (data) {
+        console.log(data);
+    }, function (reason) {
+        console.error(reason);
+    }, {
+        name: "profile_name"
+    });
+```
 
 ## getProperties
-Get one or more properties with the argument of a JSON array.
-
-For all supported properties see the doumentation ?.
+Get one or more properties with the argument as a JSON array.
 
 A valid example argument is
 ```json
 [
-	{"id": "PROPERTY_AZTEC_MAXIMUM_LENGTH"},
-	{"id": "DEC_ID_PROP_USE_ROI_DPM_AIMER_CENTERED"},
-	{"id": "TRIGGER_CONTROL_MODE_CLIENT_CONTROL"}
+	{"id": Honeywell.Properties.PROPERTY_AZTEC_MAXIMUM_LENGTH},
+	{"id": Honeywell.Properties.DEC_ID_PROP_USE_ROI_DPM_AIMER_CENTERED},
+	{"id": Honeywell.Properties.TRIGGER_CONTROL_MODE_CLIENT_CONTROL}
 ];
 ```
 
+All supported properties are listed [here](#properties).
+
+```javascript
+/**
+ * @name getProperties
+ * @function
+ * @param {function} success Callback for success
+ * @param {function} error Callback for error
+ * @param {Object} args Named arguments
+ */
+Honeywell
+    .getProperties(function (data) {
+        console.log(data);
+    }, function (reason) {
+        console.error(reason);
+    }, {
+        data: json_properties
+    });
+```
+
 ## setProperties
-Set one or more properties of the BarcodeReader with the argument as a JSON array. Please make sure to supply the rigth type of value.
+Set one or more properties of the BarcodeReader with the argument as a JSON array. Please make sure to supply the right type of value. All supported properties are listed [here](#properties). If a property can not be set due to an invalid id or invalid value an exception is thrown.
 
-If a property can not be set due to an invalid id or invalid value an exception is thrown.
-
-For all supported properties see the doumentation ?.
-
-For String-Propertys use:
+For String-Properties use:
 ```json
-{"id": "PROPERTY_STRING", "value": "VALUE"}```
+{"id": "PROPERTY_STRING", "value": "VALUE"}
+```
 
-For Integer-Propertys use:
+For Integer-Properties use:
 ```json
-{"id": "PROPERTY_INTEGER", "value": 0}```
+{"id": "PROPERTY_INTEGER", "value": 0}
+```
 
-For Boolean-Propertys use:
+For Boolean-Properties use:
 ```json
-{"id": "PROPERTY_BOOLEAN", "value": false}```
+{"id": "PROPERTY_BOOLEAN", "value": false}
+```
 
-A valid example JSON is
+A valid example JSON is:
 ```json
 [
-	{"id": "PROPERTY_AZTEC_MAXIMUM_LENGTH", "value": 23},
-	{"id": "DEC_ID_PROP_USE_ROI_DPM_AIMER_CENTERED", "value": true},
-	{"id": "TRIGGER_CONTROL_MODE_CLIENT_CONTROL", "value": true}
+	{"id": Honeywell.Properties.PROPERTY_AZTEC_MAXIMUM_LENGTH, "value": 23}, 
+	{"id": Honeywell.Properties.DEC_ID_PROP_USE_ROI_DPM_AIMER_CENTERED, "value": true},
+	{"id": Honeywell.Properties.TRIGGER_CONTROL_MODE_CLIENT_CONTROL, "value": true}
 ];
+```
+
+All supported properties are listed [here](#properties).
+
+```javascript
+/**
+ * @name setProperties
+ * @function
+ * @param {function} success Callback for success
+ * @param {function} error Callback for error
+ * @param {Object} args Named arguments
+ */
+Honeywell
+    .setProperties(function (data) {
+        console.log(data);
+    }, function (reason) {
+        console.error(reason);
+    }, {
+        data: json_properties
+    });
 ```
 
 ## getAllProperties
 Use to get the values of all current properties.
 
+```javascript
+/**
+ * @name getAllProperties
+ * @function
+ * @param {function} success Callback for success
+ * @param {function} error Callback for error
+ */
+Honeywell
+    .getAllProperties(function (data) {
+        console.log(data);
+    }, function (reason) {
+        console.error(reason);
+    });
+```
+
 ## getAllDefaultProperties
-Use to get the values of all deafault properties.
+Use to get the values of all default properties.
 
-# aim
-# decode
-# light
+```javascript
+/**
+ * @name getAllDefaultProperties
+ * @function
+ * @param {function} success Callback for success
+ * @param {function} error Callback for error
+ */
+Honeywell
+    .getAllDefaultProperties(function (data) {
+        console.log(data);
+    }, function (reason) {
+        console.error(reason);
+    });
+```
 
-## addBarcodeListener
-## addTriggerListener
-## removeBarcodeListener
-## removeTriggerListener
+## aim
+Enable or disable aim.
+
+## decode
+Enable or disable decode.
+
+## light
+Enable or disable light.
 
 ## onBarcodeEvent
 
@@ -205,3 +308,7 @@ Honeywell
         press: true
     });
 ```
+
+# <a name="properties"></a>BarcodeReader Properties
+
+A list of all valid properties from DataCollection API version 1.9.

@@ -1,5 +1,20 @@
 # Development Hints
 
+## Check Plugin Python Script
+
+The Python script ```check_plugin.py``` can be used to speed up development. The script is located in Demo App root directory root.
+
+The script performs the following tasks for the honeywell plugin project:
+1. Extract the action from all files unter ```/actions/```.
+2. Basic checking for correct naming scheme of ```ACTION_NAME```. A valid ```ACTION_NAME``` is
+	```
+	public static final String ACTION_NAME = "nameOfTheAction";
+	```
+3. Update honeywell project honeywell.js with all actions.
+4. Update the honeywell project  plugin.xml with all source files.
+
+You can also update the Honeywell plugin in the Cordova Demo project located under path with the additional command line argument ```--reload```.
+
 ## Add and remove plugins during development
 
 ### Error messsage 'UnhandledPromiseRejectionWarning'
