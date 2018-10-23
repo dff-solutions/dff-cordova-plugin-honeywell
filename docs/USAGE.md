@@ -22,6 +22,8 @@ Honeywell
     });
 ```
 
+Return type is a JSON Array.
+
 ## listConnectedBarcodeDevices
 Returns a list of names with the currently connected barcode devices. You can use createBarcodeReader() to connect to one. 
 
@@ -40,8 +42,10 @@ Honeywell
     });
 ```
 
+Return type is a JSON Array.
+
 ## createBarcodeReader
-Call without name to connect to the internal barcodereader. Call with name to connect to a specific device.
+Call without name to connect to the default internal barcodereader. Call with name to connect to a specific device. The plugin will claim the device and register the BarcodeListener.
 
 Please note that the name has to be valid and that device has to be listed in the listConnectedBarCodeDevices() call. 
 
@@ -62,7 +66,19 @@ Honeywell
     }, {
         name: "scannerName"
     });
+	
+	
+Honeywell
+    .createBarcodeReader(function (data) {
+        console.log(data);
+    }, function (reason) {
+        console.error(reason);
+    }, {
+        // supply no argument for default scanner
+    });
 ```
+
+Return type is a String with success or error message.
 
 ## closeBarcodeReader
 Call to close the connection to the currently connected barcode reader device. Before opening a new device the previous has to be closed by the plugin user.
@@ -83,32 +99,36 @@ Honeywell
     });
 ```
 
+Return type is a String with success or error message.
+
 # BarcodeReader
 
-## getProfileNames
+## barcodeReaderGetProfileNames
 Get a list of all available profile names.
 
 ```javascript
 /**
- * @name getProfileNames
+ * @name barcodeReaderGetProfileNames
  * @function
  * @param {function} success Callback for success
  * @param {function} error Callback for error
  */
 Honeywell
-    .getProfileNames(function (data) {
+    .barcodeReaderGetProfileNames(function (data) {
         console.log(data);
     }, function (reason) {
         console.error(reason);
     });
 ```
 
-## loadProfile
+Return type is a JSON Array.
+
+## barcodeReaderLoadProfile
 Load a profile by name. An invalid profile name throws an exception.
 
 ```javascript
 /**
- * @name loadProfile
+ * @name barcodeReaderLoadProfile
  * @function
  * @param {function} success Callback for success
  * @param {function} error Callback for error
@@ -116,7 +136,7 @@ Load a profile by name. An invalid profile name throws an exception.
  * @param {Object} args.name The name of the profile
  */
 Honeywell
-    .loadProfile(function (data) {
+    .barcodeReaderLoadProfile(function (data) {
         console.log(data);
     }, function (reason) {
         console.error(reason);
@@ -125,7 +145,9 @@ Honeywell
     });
 ```
 
-## getProperties
+Return type is a String with success or error message.
+
+## barcodeReaderGetProperties
 Get one or more properties. Unsupported properties will not be read by DataCollection API and will be missing in the returned JSON.
 
 A valid example argument is
@@ -141,7 +163,7 @@ All supported properties are listed [here](#properties).
 
 ```javascript
 /**
- * @name getProperties
+ * @name barcodeReaderGetProperties
  * @function
  * @param {function} success Callback for success
  * @param {function} error Callback for error
@@ -149,7 +171,7 @@ All supported properties are listed [here](#properties).
  * @param {Object} args.properties The properties as JSON array
  */
 Honeywell
-    .getProperties(function (data) {
+    .barcodeReaderGetProperties(function (data) {
         console.log(data);
     }, function (reason) {
         console.error(reason);
@@ -158,7 +180,9 @@ Honeywell
     });
 ```
 
-## setProperties
+Return type is a JSON Object.
+
+## barcodeReaderSetProperties
 Set one or more properties. Please make sure to supply the right type of value. All supported properties are listed [here](#properties). If a property can not be set due to an invalid `name` or invalid `value` an exception is thrown.
 
 For String-Properties use:
@@ -189,7 +213,7 @@ All supported properties are listed [here](#properties).
 
 ```javascript
 /**
- * @name setProperties
+ * @name barcodeReaderSetProperties
  * @function
  * @param {function} success Callback for success
  * @param {function} error Callback for error
@@ -197,7 +221,7 @@ All supported properties are listed [here](#properties).
  * @param {Object} args.properties The properties as JSON array
  */
 Honeywell
-    .setProperties(function (data) {
+    .barcodeReaderSetProperties(function (data) {
         console.log(data);
     }, function (reason) {
         console.error(reason);
@@ -206,12 +230,14 @@ Honeywell
     });
 ```
 
-## getAllProperties
+Return type is a String with success or error message.
+
+## barcodeReaderGetAllProperties
 Use to get the values of all current properties.
 
 ```javascript
 /**
- * @name getAllProperties
+ * @name barcodeReaderGetAllProperties
  * @function
  * @param {function} success Callback for success
  * @param {function} error Callback for error
@@ -224,12 +250,14 @@ Honeywell
     });
 ```
 
-## getAllDefaultProperties
+Return type is a JSON Object.
+
+## barcodeReaderGetAllDefaultProperties
 Use to get the values of all default properties.
 
 ```javascript
 /**
- * @name getAllDefaultProperties
+ * @name barcodeReaderGetAllDefaultProperties
  * @function
  * @param {function} success Callback for success
  * @param {function} error Callback for error
@@ -241,6 +269,8 @@ Honeywell
         console.error(reason);
     });
 ```
+
+Return type is a JSON Object.
 
 ## aim
 Enable or disable aim.
@@ -264,6 +294,8 @@ Honeywell
     });
 ```
 
+Return type is a String with success or error message.
+
 ## decode
 Enable or disable decode.
 
@@ -285,6 +317,8 @@ Honeywell
         enabled: true
     });
 ```
+
+Return type is a String with success or error message.
 
 ## light
 Enable or disable light.
@@ -308,7 +342,11 @@ Honeywell
     });
 ```
 
+Return type is a String with success or error message.
+
 ## onBarcodeDeviceConnectionEvent
+
+This event is dispatched by the AidcManager when a USB device change occurs.
 
 ```javascript
 /**
@@ -325,7 +363,14 @@ Honeywell
     });
 ```
 
+Return type is a JSON Object of `BarcodeDeviceConnectionEvent` with the identifiers:
+* `barcodeDevice - A complete BarcodeReader object, see getBarcodeReaderGetInfo()`
+* `status - integer with value of Honeywell.BARCODE_DEVICE_DISCONNECTED or Honeywell.BARCODE_DEVICE_CONNECTED`
+
+
 ## onBarcodeEvent
+
+Called when a bar code label is successfully scanned.
 
 ```javascript
 /**
@@ -342,7 +387,18 @@ Honeywell
     });
 ```
 
+Return type is a JSON Object of `BarcodeReadEvent` with the identifiers:
+* `data - Bar code data as a String.`
+* `charset - Character encoding of the bar code data.`
+* `codeId - Unique characters defined by Honeywell to identify symbologies.`
+* `aimId - AIM identifier of the bar code.`
+* `timestamp - Date/time in ISO 8601 format.`
+* `bounds - List of 4 points representing the polygon that approximates the boundary of the bar code.`
+
+
 ## onFailureEvent
+
+Called when a bar code label is not successfully scanned.
 
 ```javascript
 /**
@@ -359,7 +415,12 @@ Honeywell
     });
 ```
 
+Return type is a JSON Object of `BarcodeReadEvent` with the identifiers:
+* `timestamp - Retrieves the date/time in ISO 8601 format.`
+
 ## barcodeReaderPressSoftwareTrigger
+
+Sends a trigger up/down action.
 
 ```javascript
 /**
@@ -379,6 +440,8 @@ Honeywell
         press: true
     });
 ```
+
+Return type is a String with success or error message.
 
 # <a name="properties"></a>BarcodeReader Properties
 

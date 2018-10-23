@@ -33,6 +33,10 @@ var actions = [
     "listConnectedBarcodeDevices"
 ];
 
+// connection event status codes
+self.BARCODE_DEVICE_DISCONNECTED = 0;
+self.BARCODE_DEVICE_CONNECTED = 1;
+
 // These properties are taken from BarcodeReader class from DataCollection API version 1.9.
 self.Properties = Object.freeze({
 	"PROPERTY_IMAGER_LIGHT_INTENSITY": "IMG_ILLUM_INTENSITY",

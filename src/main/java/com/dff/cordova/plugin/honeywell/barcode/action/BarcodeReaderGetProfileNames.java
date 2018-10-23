@@ -35,9 +35,9 @@ public class BarcodeReaderGetProfileNames extends HoneywellAction {
 
                 Gson gson = new GsonBuilder().setFieldNamingStrategy(new GsonNamingStrategy()).create();
                 String json = gson.toJson(list);
-                JSONObject jsonObj = new JSONObject(json);
+                JSONArray jsonArray = new JSONArray(json);
 
-                this.callbackContext.success(jsonObj);
+                this.callbackContext.success(jsonArray);
             }
             else {
                 this.callbackContext.error(BARCODE_READER_NOT_INIT);
