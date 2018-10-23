@@ -30,7 +30,7 @@ public class BarcodeReaderGetProperties extends HoneywellAction {
         super(action, args, callbackContext, cordova, barcodeReaderManager, aidcManager, barcodeListener);
     }
 
-    public static final String JSON_ARGS_NAME = "data";
+    public static final String JSON_ARGS_NAME = "properties";
     public static final String[] JSON_ARGS = { JSON_ARGS_NAME };
 
     @Override
