@@ -3,11 +3,19 @@
     
     
     
+    
+    
 
     
     
     
+    
+    
     <name>Honeywell</name>
+    
+    
+    
+    
     
     
     
@@ -21,7 +29,15 @@
     
     
     
+    
+    
+    
+    
     <author>dff solutions</author>
+    
+    
+    
+    
     
     
     
@@ -33,10 +49,18 @@
     
     
     
+    
+    
      
     
     
+    
+    
     <js-module name="honeywell" src="www/honeywell.js">
+        
+        
+        
+        
         
         
         
@@ -47,6 +71,10 @@
         
         
         
+        
+        
+    
+    
     
     
     
@@ -58,7 +86,13 @@
     
     
     
+    
+    
+    
+    
     <dependency id="dff-cordova-plugin-common" url="https://github.com/dff-solutions/dff.CordovaPlugin.Common.git"/>
+    
+    
     
     
     
@@ -66,7 +100,13 @@
     
     
     
+    
+    
     <!-- android -->
+    
+    
+    
+    
     
     
     
@@ -80,7 +120,15 @@
         
         
         
+        
+        
+        
+        
         <config-file parent="/*" target="res/xml/config.xml">
+            
+            
+            
+            
             
             
             
@@ -94,7 +142,15 @@
                 
                 
                 
+                
+                
+                
+                
                 <param name="android-package" value="com.dff.cordova.plugin.honeywell.HoneywellPlugin"/>
+                
+                
+                
+                
                 
                 
                 
@@ -105,6 +161,10 @@
                 
                 
                 
+                
+                
+            
+            
             
             
             
@@ -112,10 +172,16 @@
             
             
             
+            
+            
+        
+        
         
         
         
         </config-file>
+        
+        
         
         
         
@@ -123,21 +189,35 @@
         
         
         
+        
+        
         <config-file parent="/manifest" target="AndroidManifest.xml">
+            
+            
             
             
             
         	
             
             
+            
+            
             <uses-permission android:name="com.honeywell.decode.permission.DECODE"/>
+            
+            
             
             
              
         
         
         
+        
+        
         </config-file>
+        
+        
+        
+        
         
         
         
@@ -152,11 +232,19 @@
         
         
         
+        
+        
+        
+        
         <framework custom="true" src="build-honeywell-plugin.gradle" type="gradleReference"/>
         
         
         
+        
+        
 
+        
+        
         
         
         
@@ -166,11 +254,14 @@
         <source-file src="src/main/java\com\dff\cordova\plugin\honeywell\barcode\BarcodeDeviceListener.java" target-dir="src/main/java\com\dff\cordova\plugin\honeywell\barcode"/>
         <source-file src="src/main/java\com\dff\cordova\plugin\honeywell\barcode\BarcodeListener.java" target-dir="src/main/java\com\dff\cordova\plugin\honeywell\barcode"/>
         <source-file src="src/main/java\com\dff\cordova\plugin\honeywell\barcode\FailureCallbackHandler.java" target-dir="src/main/java\com\dff\cordova\plugin\honeywell\barcode"/>
+        <source-file src="src/main/java\com\dff\cordova\plugin\honeywell\barcode\action\BarcodeReaderAim.java" target-dir="src/main/java\com\dff\cordova\plugin\honeywell\barcode\action"/>
+        <source-file src="src/main/java\com\dff\cordova\plugin\honeywell\barcode\action\BarcodeReaderDecode.java" target-dir="src/main/java\com\dff\cordova\plugin\honeywell\barcode\action"/>
         <source-file src="src/main/java\com\dff\cordova\plugin\honeywell\barcode\action\BarcodeReaderGetAllDefaultProperties.java" target-dir="src/main/java\com\dff\cordova\plugin\honeywell\barcode\action"/>
         <source-file src="src/main/java\com\dff\cordova\plugin\honeywell\barcode\action\BarcodeReaderGetAllProperties.java" target-dir="src/main/java\com\dff\cordova\plugin\honeywell\barcode\action"/>
         <source-file src="src/main/java\com\dff\cordova\plugin\honeywell\barcode\action\BarcodeReaderGetInfo.java" target-dir="src/main/java\com\dff\cordova\plugin\honeywell\barcode\action"/>
         <source-file src="src/main/java\com\dff\cordova\plugin\honeywell\barcode\action\BarcodeReaderGetProfileNames.java" target-dir="src/main/java\com\dff\cordova\plugin\honeywell\barcode\action"/>
         <source-file src="src/main/java\com\dff\cordova\plugin\honeywell\barcode\action\BarcodeReaderGetProperties.java" target-dir="src/main/java\com\dff\cordova\plugin\honeywell\barcode\action"/>
+        <source-file src="src/main/java\com\dff\cordova\plugin\honeywell\barcode\action\BarcodeReaderLight.java" target-dir="src/main/java\com\dff\cordova\plugin\honeywell\barcode\action"/>
         <source-file src="src/main/java\com\dff\cordova\plugin\honeywell\barcode\action\BarcodeReaderLoadProfile.java" target-dir="src/main/java\com\dff\cordova\plugin\honeywell\barcode\action"/>
         <source-file src="src/main/java\com\dff\cordova\plugin\honeywell\barcode\action\BarcodeReaderPressSoftwareTrigger.java" target-dir="src/main/java\com\dff\cordova\plugin\honeywell\barcode\action"/>
         <source-file src="src/main/java\com\dff\cordova\plugin\honeywell\barcode\action\BarcodeReaderSetProperties.java" target-dir="src/main/java\com\dff\cordova\plugin\honeywell\barcode\action"/>
@@ -188,6 +279,10 @@
     
     
     
+    
+    
+
+
 
 
 

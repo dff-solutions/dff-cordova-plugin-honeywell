@@ -186,7 +186,17 @@ public class HoneywellPlugin extends CommonPlugin {
         } else if (BarcodeReaderGetAllDefaultProperties.ACTION_NAME.equals(action)) {
             cordovaAction = new BarcodeReaderGetAllDefaultProperties(action, args, callbackContext, this.cordova,
                     this.barcodeReaderManager, this.aidcManager, this.barcodeListener);
+        } else if (BarcodeReaderAim.ACTION_NAME.equals(action)) {
+            cordovaAction = new BarcodeReaderAim(action, args, callbackContext, this.cordova,
+                    this.barcodeReaderManager, this.aidcManager, this.barcodeListener);
+        } else if (BarcodeReaderDecode.ACTION_NAME.equals(action)) {
+            cordovaAction = new BarcodeReaderDecode(action, args, callbackContext, this.cordova,
+                    this.barcodeReaderManager, this.aidcManager, this.barcodeListener);
+        } else if (BarcodeReaderLight.ACTION_NAME.equals(action)) {
+            cordovaAction = new BarcodeReaderLight(action, args, callbackContext, this.cordova,
+                    this.barcodeReaderManager, this.aidcManager, this.barcodeListener);
         }
+
 
         if (cordovaAction != null) {
             this.cordova.getThreadPool().execute(cordovaAction);
