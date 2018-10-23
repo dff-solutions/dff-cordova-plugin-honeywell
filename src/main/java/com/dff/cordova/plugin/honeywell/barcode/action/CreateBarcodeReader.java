@@ -38,7 +38,8 @@ public class CreateBarcodeReader extends HoneywellAction {
                 if(this.barcodeReaderManager.getInstance() == null) {
 
                     // get optional name parameter
-                    JSONObject jsonArgs = super.checkJsonArgs(args, null);
+                    String[] emptyArray = {};
+                    JSONObject jsonArgs = super.checkJsonArgs(args, emptyArray);
                     String name = jsonArgs.optString(JSON_ARGS_NAME, null);
 
                     try
