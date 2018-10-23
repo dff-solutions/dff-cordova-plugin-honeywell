@@ -28,6 +28,7 @@ public abstract class HoneywellAction extends CordovaAction {
 	public static final String NO_CONNECTED_DEVICES = "No connected devices.";
 	public static final String LOST_DEVICE_CONNECTION = "Lost connection to connected barcode reader.";
 	public static final String PROFILE_LOADED = "Barcode reader profile loaded.";
+	public static final String PROFILE_NOT_LOADED = "Barcode reader profile not loaded.";
 	public static final String PROPERTIES_SET = "All properties set.";
 
 	public JSONObject returnJSONObject(String msg)
