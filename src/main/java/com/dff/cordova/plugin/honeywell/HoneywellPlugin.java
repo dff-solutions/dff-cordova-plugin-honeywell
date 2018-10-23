@@ -53,13 +53,6 @@ public class HoneywellPlugin extends CommonPlugin {
         });
     }
 
-    private void closeAndNullBarcodeReader()
-    {
-        barcodeReaderManager.getInstance().removeBarcodeListener(HoneywellPlugin.this.barcodeListener);
-        barcodeReaderManager.getInstance().close();
-        barcodeReaderManager.setInstance(null);
-    }
-
     /**
      * Called when the activity will start interacting with the user.
      *

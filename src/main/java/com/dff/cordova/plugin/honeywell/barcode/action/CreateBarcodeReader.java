@@ -58,12 +58,12 @@ public class CreateBarcodeReader extends HoneywellAction {
                         this.callbackContext.success(BARCODE_READER_INIT);
                     }
                     catch (ScannerUnavailableException e) {
-                        this.callbackContext.error("Exception: " + e.getMessage());
+                        this.callbackContext.error(e.getMessage());
                         CordovaPluginLog.e(TAG, e.getMessage(), e);
                     }
                     catch (Exception e)
                     {
-                        this.callbackContext.error("Exception: " + e.getMessage());
+                        this.callbackContext.error(e.getMessage());
                         CordovaPluginLog.e(TAG, e.getMessage(), e);
                     }
                 }

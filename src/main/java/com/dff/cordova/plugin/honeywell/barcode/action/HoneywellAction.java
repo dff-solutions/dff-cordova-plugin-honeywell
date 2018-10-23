@@ -31,21 +31,6 @@ public abstract class HoneywellAction extends CordovaAction {
 	public static final String PROFILE_NOT_LOADED = "Barcode reader profile not loaded.";
 	public static final String PROPERTIES_SET = "All properties set.";
 
-	public JSONObject returnJSONObject(String msg)
-	{
-		JSONObject json = new JSONObject();
-
-		try
-		{
-			json.put("message", msg);
-		}
-		catch (JSONException e)
-		{
-			e.printStackTrace();
-		}
-		return json;
-	}
-
 	public HoneywellAction(String action, JSONArray args, CallbackContext callbackContext, CordovaInterface cordova,
 						   BarcodeReaderManager barcodeReaderManager, AidcManager aidcManager, BarcodeListener barcodelistener) {
 		super(action, args, callbackContext, cordova);

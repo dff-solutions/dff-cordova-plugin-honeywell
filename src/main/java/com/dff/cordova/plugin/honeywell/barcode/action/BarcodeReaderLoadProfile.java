@@ -40,13 +40,7 @@ public class BarcodeReaderLoadProfile extends HoneywellAction {
 
                 boolean success = this.barcodeReaderManager.getInstance().loadProfile(name);
 
-                if(success) {
-                    this.callbackContext.success(PROFILE_LOADED);
-                }
-                else
-                {
-                    this.callbackContext.error(PROFILE_NOT_LOADED);
-                }
+                this.callbackContext.success(success);
             }
             else {
                 this.callbackContext.error(BARCODE_READER_NOT_INIT);
