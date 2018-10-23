@@ -1,5 +1,6 @@
 package com.dff.cordova.plugin.honeywell;
 
+import com.dff.cordova.plugin.honeywell.barcode.BarcodeDeviceListener;
 import com.dff.cordova.plugin.honeywell.barcode.action.*;
 import com.dff.cordova.plugin.honeywell.common.BarcodeReaderManager;
 import com.honeywell.aidc.*;
@@ -21,6 +22,7 @@ public class HoneywellPlugin extends CommonPlugin {
     private AidcManager aidcManager;
     private BarcodeReaderManager barcodeReaderManager;
     private BarcodeListener barcodeListener;
+    private BarcodeDeviceListener barcodeDeviceListener;
 
     public HoneywellPlugin() {
         super(LOG_TAG);
@@ -34,6 +36,7 @@ public class HoneywellPlugin extends CommonPlugin {
         super.pluginInitialize();
 
         this.barcodeListener = new BarcodeListener();
+        this.barcodeDeviceListener = new BarcodeDeviceListener();
         this.barcodeReaderManager = new BarcodeReaderManager();
 
         AidcManager.create(this.cordova.getActivity(), new CreatedCallback() {
@@ -44,41 +47,8 @@ public class HoneywellPlugin extends CommonPlugin {
                 CordovaPluginLog.d(LOG_TAG, "AidcManager created");
                 HoneywellPlugin.this.aidcManager = aidcManager;
 
-                // listener for connected and disconnection events of devices
-                HoneywellPlugin.this.aidcManager.addBarcodeDeviceListener(new AidcManager.BarcodeDeviceListener() {
-                    @Override
-                    public void onBarcodeDeviceConnectionEvent(BarcodeDeviceConnectionEvent barcodeDeviceConnectionEvent) {
-
-                        int event = barcodeDeviceConnectionEvent.getConnectionStatus();
-
-                        if(event == AidcManager.BARCODE_DEVICE_CONNECTED)
-                        {
-                            // barcode device was added, nothing to do.
-                            // plugin user can use it at some point.
-                        } else if (event == AidcManager.BARCODE_DEVICE_DISCONNECTED) {
-
-                            // a barcode device was removed
-
-                            // check for connected barcode reader
-                            if (barcodeReaderManager.getInstance() != null) {
-                                try {
-                                    // get name of currently connected device
-                                    String name = barcodeReaderManager.getInstance().getInfo().getName();
-
-                                    // check for lost connection
-                                    if (barcodeDeviceConnectionEvent.getBarcodeReaderInfo().getName().equals(name)) {
-                                        // remove listener and close barcode reader
-                                        CordovaPluginLog.d(LOG_TAG, LOST_DEVICE_CONNECTION);
-                                        closeAndNullBarcodeReader();
-                                        // TODO: inform user that device connection was lost?
-                                    }
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        }
-                    }
-                });
+                // register barcode device listener
+                HoneywellPlugin.this.aidcManager.addBarcodeDeviceListener(HoneywellPlugin.this.barcodeDeviceListener);
             }
         });
     }
@@ -176,6 +146,9 @@ public class HoneywellPlugin extends CommonPlugin {
             return true;
         } else if ("onFailureEvent".equals(action)) {
             this.barcodeListener.setFailureCallback(callbackContext);
+            return true;
+        } else if ("onBarcodeDeviceConnectionEvent".equals(action)) {
+            this.barcodeDeviceListener.setEventCallback(callbackContext);
             return true;
         } else if (BarcodeReaderPressSoftwareTrigger.ACTION_NAME.equals(action)) {
             cordovaAction = new BarcodeReaderPressSoftwareTrigger(action, args, callbackContext, this.cordova,

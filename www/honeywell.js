@@ -15,6 +15,7 @@ var actions = [
     "onLog",
     "onBarcodeEvent",
     "onFailureEvent",
+    "onBarcodeDeviceConnectionEvent",
     "barcodeReaderGetAllDefaultProperties",
     "barcodeReaderGetAllProperties",
     "barcodeReaderGetInfo",

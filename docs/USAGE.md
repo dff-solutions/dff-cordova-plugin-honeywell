@@ -252,6 +252,24 @@ Enable or disable decode.
 ## light
 Enable or disable light.
 
+## onBarcodeDeviceConnectionEvent
+
+```javascript
+/**
+ * @name onBarcodeDeviceConnectionEvent
+ * @function
+ * @param {function} success Callback for success
+ * @param {function} error Callback for error
+ * @param {Object} args Named arguments
+ */
+Honeywell
+    .onBarcodeDeviceConnectionEvent(function (data) {
+        console.log(data);
+    }, function (reason) {
+        console.error(reason);
+    });
+```
+
 ## onBarcodeEvent
 
 ```javascript
