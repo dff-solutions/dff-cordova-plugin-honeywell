@@ -2,9 +2,7 @@
 
 # AidcManager
 
-The plugin initializes the AidcManager which manages the BarcodeReader devices.
-
-The DataCollection API callbacks addBarcodeDeviceListener() and removeBarcodeDeviceListener() are not exposed to the plugin user. Internally the plugin takes care of currently connected barcode devices and proper ressource management. 
+The plugin initializes the AidcManager which manages the BarcodeReader devices. Internally the plugin takes care of currently connected barcode device and proper ressource management. 
 
 ## listBarcodeDevices
 Returns a list of names of devices which were connected to the device at some point. You can only connect to devices which are listed in listConnectedBarCodeDevices().
@@ -15,7 +13,6 @@ Returns a list of names of devices which were connected to the device at some po
  * @function
  * @param {function} success Callback for success
  * @param {function} error Callback for error
- * @param {Object} args Named arguments
  */
 Honeywell
     .listBarcodeDevices(function (data) {
@@ -34,7 +31,6 @@ Returns a list of names with the currently connected barcode devices. You can us
  * @function
  * @param {function} success Callback for success
  * @param {function} error Callback for error
- * @param {Object} args Named arguments
  */
 Honeywell
     .listConnectedBarcodeDevices(function (data) {
@@ -56,6 +52,7 @@ Please note that the name has to be valid and that device has to be listed in th
  * @param {function} success Callback for success
  * @param {function} error Callback for error
  * @param {Object} args Named arguments
+ * @param {Object} args.name The scanner name to create the BarcodeReader object for
  */
 Honeywell
     .createBarcodeReader(function (data) {
@@ -63,7 +60,7 @@ Honeywell
     }, function (reason) {
         console.error(reason);
     }, {
-        name: "scanner_name"
+        name: "scannerName"
     });
 ```
 
@@ -97,7 +94,6 @@ Get a list of all available profile names.
  * @function
  * @param {function} success Callback for success
  * @param {function} error Callback for error
- * @param {Object} args Named arguments
  */
 Honeywell
     .getProfileNames(function (data) {
@@ -117,6 +113,7 @@ Load a profile by name. An invalid profile name throws an exception.
  * @param {function} success Callback for success
  * @param {function} error Callback for error
  * @param {Object} args Named arguments
+ * @param {Object} args.name The name of the profile
  */
 Honeywell
     .loadProfile(function (data) {
@@ -124,12 +121,12 @@ Honeywell
     }, function (reason) {
         console.error(reason);
     }, {
-        name: "profile_name"
+        name: "profileName"
     });
 ```
 
 ## getProperties
-Get one or more properties with the argument as a JSON array. Unsupported properties will not be read by DataCollection API and will be missing in the returned JSON.
+Get one or more properties. Unsupported properties will not be read by DataCollection API and will be missing in the returned JSON.
 
 A valid example argument is
 ```json
@@ -149,6 +146,7 @@ All supported properties are listed [here](#properties).
  * @param {function} success Callback for success
  * @param {function} error Callback for error
  * @param {Object} args Named arguments
+ * @param {Object} args.properties The properties as JSON array
  */
 Honeywell
     .getProperties(function (data) {
@@ -156,12 +154,12 @@ Honeywell
     }, function (reason) {
         console.error(reason);
     }, {
-        data: json_properties
+        properties: json_properties
     });
 ```
 
 ## setProperties
-Set one or more properties of the BarcodeReader with the argument as a JSON array. Please make sure to supply the right type of value. All supported properties are listed [here](#properties). If a property can not be set due to an invalid id or invalid value an exception is thrown.
+Set one or more properties. Please make sure to supply the right type of value. All supported properties are listed [here](#properties). If a property can not be set due to an invalid `name` or invalid `value` an exception is thrown.
 
 For String-Properties use:
 ```json
@@ -196,6 +194,7 @@ All supported properties are listed [here](#properties).
  * @param {function} success Callback for success
  * @param {function} error Callback for error
  * @param {Object} args Named arguments
+ * @param {Object} args.properties The properties as JSON array
  */
 Honeywell
     .setProperties(function (data) {
@@ -203,7 +202,7 @@ Honeywell
     }, function (reason) {
         console.error(reason);
     }, {
-        data: json_properties
+        properties: json_properties
     });
 ```
 
@@ -246,11 +245,68 @@ Honeywell
 ## aim
 Enable or disable aim.
 
+```javascript
+/**
+ * @name barcodeReaderAim
+ * @function
+ * @param {function} success Callback for success
+ * @param {function} error Callback for error
+ * @param {Object} args Named arguments
+ * @param {Object} args.enabled If aiming is enabled
+ */
+Honeywell
+    .barcodeReaderAim(function (data) {
+        console.log(data);
+    }, function (reason) {
+        console.error(reason);
+    }, {
+        enabled: true
+    });
+```
+
 ## decode
 Enable or disable decode.
 
+```javascript
+/**
+ * @name barcodeReaderDecode
+ * @function
+ * @param {function} success Callback for success
+ * @param {function} error Callback for error
+ * @param {Object} args Named arguments
+ * @param {Object} args.enabled If decode is enabled
+ */
+Honeywell
+    .barcodeReaderDecode(function (data) {
+        console.log(data);
+    }, function (reason) {
+        console.error(reason);
+    }, {
+        enabled: true
+    });
+```
+
 ## light
 Enable or disable light.
+
+```javascript
+/**
+ * @name barcodeReaderLight
+ * @function
+ * @param {function} success Callback for success
+ * @param {function} error Callback for error
+ * @param {Object} args Named arguments
+ * @param {Object} args.enabled If light is enabled
+ */
+Honeywell
+    .barcodeReaderLight(function (data) {
+        console.log(data);
+    }, function (reason) {
+        console.error(reason);
+    }, {
+        enabled: true
+    });
+```
 
 ## onBarcodeDeviceConnectionEvent
 
@@ -260,7 +316,6 @@ Enable or disable light.
  * @function
  * @param {function} success Callback for success
  * @param {function} error Callback for error
- * @param {Object} args Named arguments
  */
 Honeywell
     .onBarcodeDeviceConnectionEvent(function (data) {
@@ -278,7 +333,6 @@ Honeywell
  * @function
  * @param {function} success Callback for success
  * @param {function} error Callback for error
- * @param {Object} args Named arguments
  */
 Honeywell
     .onBarcodeEvent(function (data) {
@@ -296,7 +350,6 @@ Honeywell
  * @function
  * @param {function} success Callback for success
  * @param {function} error Callback for error
- * @param {Object} args Named arguments
  */
 Honeywell
     .onFailureEvent(function (failure) {
