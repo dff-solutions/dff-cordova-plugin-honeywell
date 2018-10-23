@@ -272,7 +272,7 @@ Honeywell
 
 Return type is a JSON Object.
 
-## aim
+## barcodeReaderAim
 Enable or disable aim.
 
 ```javascript
@@ -296,7 +296,7 @@ Honeywell
 
 Return type is a String with success or error message.
 
-## decode
+## barcodeReaderDecode
 Enable or disable decode.
 
 ```javascript
@@ -320,7 +320,7 @@ Honeywell
 
 Return type is a String with success or error message.
 
-## light
+## barcodeReaderLight
 Enable or disable light.
 
 ```javascript
