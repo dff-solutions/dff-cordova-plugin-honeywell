@@ -38,8 +38,9 @@ public class ListBarcodeDevices extends HoneywellAction {
                 // Gson conversion code
                 Gson gson = new GsonBuilder().setFieldNamingStrategy(new GsonNamingStrategy()).create();
                 String json = gson.toJson(listOfBarcodeReaders);
+                JSONArray jsonArray = new JSONArray(json);
 
-                this.callbackContext.success(json);
+                this.callbackContext.success(jsonArray);
             }
             else
             {
