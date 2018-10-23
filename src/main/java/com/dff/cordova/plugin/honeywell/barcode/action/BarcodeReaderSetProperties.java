@@ -24,8 +24,8 @@ public class BarcodeReaderSetProperties extends HoneywellAction {
     private static final String TAG = "com.dff.cordova.plugin.honeywell.barcode.action.barcodeReaderGetProfileNames";
     public static final String ACTION_NAME = "barcodeReaderSetProperties";
 
-    public static final String JSON_ARGS_DATA = "properties";
-    public static final String[] JSON_ARGS = { JSON_ARGS_DATA };
+    public static final String JSON_ARGS_PROPERTIES = "properties";
+    public static final String[] JSON_ARGS = { JSON_ARGS_PROPERTIES };
 
     public BarcodeReaderSetProperties(String action, JSONArray args, CallbackContext callbackContext,
                                       CordovaInterface cordova, BarcodeReaderManager barcodeReaderManager, AidcManager aidcManager,
@@ -38,7 +38,7 @@ public class BarcodeReaderSetProperties extends HoneywellAction {
         try {
             if(this.barcodeReaderManager.getInstance() != null) {
                 JSONObject jsonArgs = super.checkJsonArgs(this.args, JSON_ARGS);
-                JSONArray properties = jsonArgs.getJSONArray(JSON_ARGS_DATA);
+                JSONArray properties = jsonArgs.getJSONArray(JSON_ARGS_PROPERTIES);
 
                 setPropertysFromJSONArray(properties);
             }

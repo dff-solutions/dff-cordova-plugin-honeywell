@@ -30,15 +30,15 @@ public class BarcodeReaderGetProperties extends HoneywellAction {
         super(action, args, callbackContext, cordova, barcodeReaderManager, aidcManager, barcodeListener);
     }
 
-    public static final String JSON_ARGS_NAME = "properties";
-    public static final String[] JSON_ARGS = { JSON_ARGS_NAME };
+    public static final String JSON_ARGS_PROPERTIES = "properties";
+    public static final String[] JSON_ARGS = { JSON_ARGS_PROPERTIES };
 
     @Override
     public void run() {
         try {
             if(this.barcodeReaderManager.getInstance() != null) {
                 JSONObject jsonArgs = super.checkJsonArgs(this.args, JSON_ARGS);
-                JSONArray data = jsonArgs.getJSONArray(JSON_ARGS_NAME);
+                JSONArray data = jsonArgs.getJSONArray(JSON_ARGS_PROPERTIES);
 
                 Set<String> set = setFromJSON(data);
                 Map<String, Object> properties = this.barcodeReaderManager.getInstance().getProperties(set);

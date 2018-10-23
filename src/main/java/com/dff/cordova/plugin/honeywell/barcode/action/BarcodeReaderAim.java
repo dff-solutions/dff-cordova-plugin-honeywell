@@ -13,8 +13,8 @@ public class BarcodeReaderAim extends HoneywellAction {
     private static final String TAG = "com.dff.cordova.plugin.honeywell.barcode.action.BarcodeReaderAim";
     public static final String ACTION_NAME = "barcodeReaderAim";
 
-    public static final String JSON_ARGS_PRESS = "enable";
-    public static final String[] JSON_ARGS = { JSON_ARGS_PRESS };
+    public static final String JSON_ARGS_ENABLE = "enable";
+    public static final String[] JSON_ARGS = { JSON_ARGS_ENABLE };
 
     public BarcodeReaderAim(String action, JSONArray args, CallbackContext callbackContext,
                                              CordovaInterface cordova, BarcodeReaderManager barcodeReaderManager, AidcManager aidcManager,
@@ -27,7 +27,7 @@ public class BarcodeReaderAim extends HoneywellAction {
         try {
             if(this.barcodeReaderManager.getInstance() != null) {
                 JSONObject jsonArgs = super.checkJsonArgs(this.args, JSON_ARGS);
-                boolean enable = jsonArgs.getBoolean(JSON_ARGS_PRESS);
+                boolean enable = jsonArgs.getBoolean(JSON_ARGS_ENABLE);
 
                 this.barcodeReaderManager.getInstance().aim(enable);
 
