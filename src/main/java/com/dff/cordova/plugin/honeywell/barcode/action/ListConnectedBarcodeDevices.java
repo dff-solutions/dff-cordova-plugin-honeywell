@@ -37,14 +37,14 @@ public class ListConnectedBarcodeDevices extends HoneywellAction {
 
                     if (listOfConnectedBarcodeReaders.size() == 0) {
                         // no connected devices
-                        this.callbackContext.success(returnJSONObject(NO_CONNECTED_DEVICES));
+                        this.callbackContext.success(NO_CONNECTED_DEVICES);
                     } else {
                         // Gson conversion code
                         Gson gson = new GsonBuilder().setFieldNamingStrategy(new GsonNamingStrategy()).create();
                         String json = gson.toJson(listOfConnectedBarcodeReaders);
-                        JSONObject jsonObj = new JSONObject(json);
+                        JSONArray jsonArray = new JSONArray(json);
 
-                        this.callbackContext.success(jsonObj);
+                        this.callbackContext.success(jsonArray);
                     }
             }
             else
