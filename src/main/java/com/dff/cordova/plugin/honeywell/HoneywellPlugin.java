@@ -1,20 +1,18 @@
 package com.dff.cordova.plugin.honeywell;
 
-import com.dff.cordova.plugin.honeywell.barcode.BarcodeDeviceListener;
-import com.dff.cordova.plugin.honeywell.barcode.action.*;
-import com.dff.cordova.plugin.honeywell.common.BarcodeReaderManager;
-import com.honeywell.aidc.*;
-import org.apache.cordova.CallbackContext;
-import org.json.JSONArray;
-import org.json.JSONException;
-
 import com.dff.cordova.plugin.common.CommonPlugin;
 import com.dff.cordova.plugin.common.action.CordovaAction;
 import com.dff.cordova.plugin.common.log.CordovaPluginLog;
+import com.dff.cordova.plugin.honeywell.barcode.BarcodeDeviceListener;
 import com.dff.cordova.plugin.honeywell.barcode.BarcodeListener;
+import com.dff.cordova.plugin.honeywell.barcode.action.*;
+import com.dff.cordova.plugin.honeywell.common.BarcodeReaderManager;
+import com.honeywell.aidc.AidcManager;
 import com.honeywell.aidc.AidcManager.CreatedCallback;
-
-import static com.dff.cordova.plugin.honeywell.barcode.action.HoneywellAction.LOST_DEVICE_CONNECTION;
+import com.honeywell.aidc.ScannerUnavailableException;
+import org.apache.cordova.CallbackContext;
+import org.json.JSONArray;
+import org.json.JSONException;
 
 public class HoneywellPlugin extends CommonPlugin {
 

@@ -3,21 +3,13 @@ package com.dff.cordova.plugin.honeywell.barcode.action;
 import com.dff.cordova.plugin.common.log.CordovaPluginLog;
 import com.dff.cordova.plugin.honeywell.barcode.BarcodeListener;
 import com.dff.cordova.plugin.honeywell.common.BarcodeReaderManager;
-import com.dff.cordova.plugin.honeywell.common.GsonNamingStrategy;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.honeywell.aidc.AidcManager;
-import com.honeywell.aidc.BarcodeReader;
 import com.honeywell.aidc.UnsupportedPropertyException;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 
 public class BarcodeReaderSetProperties extends HoneywellAction {
 

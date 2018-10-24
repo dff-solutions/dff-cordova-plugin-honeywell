@@ -1,11 +1,10 @@
 package com.dff.cordova.plugin.honeywell.barcode;
 
-import org.json.JSONException;
-
 import com.dff.cordova.plugin.common.AbstractPluginListener;
 import com.dff.cordova.plugin.common.log.CordovaPluginLog;
 import com.dff.cordova.plugin.honeywell.json.model.JsonFailureEvent;
 import com.honeywell.aidc.BarcodeFailureEvent;
+import org.json.JSONException;
 
 public class FailureCallbackHandler extends AbstractPluginListener {
 	private static String LOG_TAG = "com.dff.cordova.plugin.honeywell.barcode.FailureCallbackHandler";

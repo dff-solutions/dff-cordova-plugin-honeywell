@@ -1,10 +1,9 @@
 package com.dff.cordova.plugin.honeywell.barcode;
 
-import org.apache.cordova.CallbackContext;
-
 import com.honeywell.aidc.BarcodeFailureEvent;
 import com.honeywell.aidc.BarcodeReadEvent;
 import com.honeywell.aidc.BarcodeReader;
+import org.apache.cordova.CallbackContext;
 
 public class BarcodeListener implements BarcodeReader.BarcodeListener {
 	BarcodeCallbackHandler barcodeCallbackHandler = new BarcodeCallbackHandler();

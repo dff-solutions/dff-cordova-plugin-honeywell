@@ -1,12 +1,11 @@
 package com.dff.cordova.plugin.honeywell.json.model;
 
-import java.util.List;
-
+import android.graphics.Point;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.graphics.Point;
+import java.util.List;
 
 public class JsonPoint {
 	public static JSONObject toJson(Point point) throws JSONException {

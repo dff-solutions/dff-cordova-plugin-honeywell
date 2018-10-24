@@ -7,13 +7,11 @@ import com.dff.cordova.plugin.honeywell.common.GsonNamingStrategy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.honeywell.aidc.AidcManager;
-import com.honeywell.aidc.BarcodeReader;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.util.List;
 import java.util.Map;
 
 public class BarcodeReaderGetAllProperties extends HoneywellAction {

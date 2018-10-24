@@ -4,8 +4,6 @@ import com.dff.cordova.plugin.common.log.CordovaPluginLog;
 import com.dff.cordova.plugin.honeywell.barcode.BarcodeListener;
 import com.dff.cordova.plugin.honeywell.common.BarcodeReaderManager;
 import com.honeywell.aidc.AidcManager;
-import com.honeywell.aidc.BarcodeReader;
-import com.honeywell.aidc.ScannerUnavailableException;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
 import org.json.JSONArray;

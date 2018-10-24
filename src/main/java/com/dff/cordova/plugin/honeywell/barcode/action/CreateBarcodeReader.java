@@ -1,18 +1,14 @@
 package com.dff.cordova.plugin.honeywell.barcode.action;
 
 import com.dff.cordova.plugin.common.log.CordovaPluginLog;
-import com.dff.cordova.plugin.honeywell.HoneywellPlugin;
 import com.dff.cordova.plugin.honeywell.barcode.BarcodeListener;
 import com.dff.cordova.plugin.honeywell.common.BarcodeReaderManager;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.honeywell.aidc.*;
+import com.honeywell.aidc.AidcManager;
+import com.honeywell.aidc.ScannerUnavailableException;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
 import org.json.JSONArray;
 import org.json.JSONObject;
-
-import java.util.List;
 
 public class CreateBarcodeReader extends HoneywellAction {
 

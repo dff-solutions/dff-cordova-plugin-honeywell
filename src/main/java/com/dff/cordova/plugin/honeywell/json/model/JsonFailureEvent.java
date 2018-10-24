@@ -1,9 +1,8 @@
 package com.dff.cordova.plugin.honeywell.json.model;
 
+import com.honeywell.aidc.BarcodeFailureEvent;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import com.honeywell.aidc.BarcodeFailureEvent;
 
 public class JsonFailureEvent {
 	public static JSONObject toJson(BarcodeFailureEvent event) throws JSONException {

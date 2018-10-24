@@ -3,11 +3,9 @@ package com.dff.cordova.plugin.honeywell.barcode;
 import com.dff.cordova.plugin.common.AbstractPluginListener;
 import com.dff.cordova.plugin.common.log.CordovaPluginLog;
 import com.dff.cordova.plugin.honeywell.common.GsonNamingStrategy;
-import com.dff.cordova.plugin.honeywell.json.model.JsonBarcodeEvent;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.honeywell.aidc.BarcodeDeviceConnectionEvent;
-import com.honeywell.aidc.BarcodeReadEvent;
 import org.json.JSONException;
 import org.json.JSONObject;
 
