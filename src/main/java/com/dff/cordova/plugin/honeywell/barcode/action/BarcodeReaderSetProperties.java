@@ -33,6 +33,7 @@ public class BarcodeReaderSetProperties extends HoneywellAction {
                 JSONArray properties = jsonArgs.getJSONArray(JSON_ARGS_PROPERTIES);
 
                 setPropertysFromJSONArray(properties);
+                this.callbackContext.success();
             }
             else {
                 this.callbackContext.error(BARCODE_READER_NOT_INIT);
@@ -50,8 +51,6 @@ public class BarcodeReaderSetProperties extends HoneywellAction {
         for (int i = 0; i < jsonArray.length(); i++) {
             setPropertyFromJSONObject(jsonArray.getJSONObject(i));
         }
-
-        this.callbackContext.success(PROPERTIES_SET);
     }
 
     public void setPropertyFromJSONObject(JSONObject json) throws JSONException, UnsupportedPropertyException {

@@ -33,13 +33,7 @@ public class BarcodeReaderLoadProfile extends HoneywellAction {
                 String name = jsonArgs.getString(JSON_ARGS_NAME);
 
                 boolean success = this.barcodeReaderManager.getInstance().loadProfile(name);
-
-                // can not return boolean in callback success() directly
-                if(success) {
-                    this.callbackContext.success(PROFILE_LOADED);
-                } else {
-                    this.callbackContext.success(PROFILE_NOT_LOADED);
-                }
+                this.callbackContext.success(success);
             }
             else {
                 this.callbackContext.error(BARCODE_READER_NOT_INIT);

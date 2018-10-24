@@ -38,22 +38,6 @@ public class BarcodeReaderGetInfo extends HoneywellAction {
                 String json = gson.toJson(info);
                 JSONObject jsonObj = new JSONObject(json);
 
-                /*
-                explicit JSON generation with put() method
-
-                JSONObject json = new JSONObject();
-                json.put("controlLogicVersion", info.getControlLogicVersion());
-                json.put("fastDecodeVersion", info.getFastDecodeVersion());
-                json.put("frameHeight", info.getFrameHeight());
-                json.put("frameWidth", info.getFrameWidth());
-                json.put("friendlyName", info.getFriendlyName());
-                json.put("fullDecodeVersion", info.getFullDecodeVersion());
-                json.put("name", info.getName());
-                json.put("scannerId", info.getScannerId());
-                json.put("scannerVersionNumber", info.getScannerVersionNumber());
-
-                */
-
                 this.callbackContext.success(jsonObj);
             }
             else {

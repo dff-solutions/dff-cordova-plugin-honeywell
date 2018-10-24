@@ -1,8 +1,11 @@
 # Usage
 
-All important functions from the Honeywell DataCollection API for the objects AidcManager and BarcodeReader are wrapped and exposed to the Plugin user. Naming convetions are taken from the [DataCollection API](Honeywell_MobilitySDK_Android_v1.00.00.0054/honeywell-android-data-collection-sdk/docs/api/index.html).
+All important functions from the Honeywell DataCollection API
+or the objects AidcManager and BarcodeReader are wrapped and exposed to the Plugin user.
+Naming conventions are taken from the [DataCollection API](Honeywell_MobilitySDK_Android_v1.00.00.0054/honeywell-android-data-collection-sdk/docs/api/index.html).
 
-The example code provided as JavaScript snippets for each function is runnable over the Browser Inspector.
+The example code provided as JavaScript snippets for each function is runnable over the
+Browser Inspector. `@return` describes the data the success callback is called with.
 
 # Interfaces
 
@@ -22,28 +25,20 @@ interface BarcodeReaderInfo {
 }
 ```
 
+## BarcodeReaderProperty
+
+```javascript
+interface BarcodeReaderProperty {	
+	name: string;
+	value: boolean | int | boolean;
+}
+```
+
 ## BarcodeReaderProperties
 
 ```javascript
-interface BarcodeReaderProperties {	
-	name: string;
-	value: string | int | boolean;
-}
-```
-
-## BarcodeReaderSetFormat
-```javascript
-interface BarcodeReaderSetFormat {	
-	name: string;
-	value: string | int | boolean;
-}
-```
-
-## BarcodeReaderPropertiesMap
-```javascript
-interface BarcodeReaderSetFormat {	
-	name: string;
-	value: string;
+interface BarcodeReaderProperties {
+    [name: string]: boolean | int | string
 }
 ```
 
@@ -86,7 +81,7 @@ Returns a list of names of devices which were connected to the device at some po
  * @param {function} success Callback for success
  * @param {function} error Callback for error
  * 
- * @return {[ BarcodeReaderInfo ]}
+ * @return { BarcodeReaderInfo[] }
  */
 Honeywell
     .listBarcodeDevices(function (data) {
@@ -106,7 +101,7 @@ Returns a list of names with the currently connected barcode devices. You can us
  * @param {function} success Callback for success
  * @param {function} error Callback for error
  * 
- * @return {[ BarcodeReaderInfo ]}
+ * @return { BarcodeReaderInfo[] }
  */
 Honeywell
     .listConnectedBarcodeDevices(function (data) {
@@ -128,9 +123,8 @@ Please note that the name has to be valid and that device has to be listed in th
  * @param {function} success Callback for success
  * @param {function} error Callback for error
  * @param {Object} args Named arguments
- * @param {String} args.name? The optional scanner name to create the BarcodeReader object for
- * 
- * @return {String} String with success or error message.
+ * @param {String} args.name? The optional scanner name to create the BarcodeReader object for.
+ *                            The internal scanner is used as default.
  */
  
 // without name argument	
@@ -184,7 +178,7 @@ Get the names of all the existing profiles.
  * @param {function} success Callback for success
  * @param {function} error Callback for error
   * 
- * @return {[ String ]} a list containing all the profile names
+ * @return { string[] } a list containing all the profile names
  */
 Honeywell
     .barcodeReaderGetProfileNames(function (data) {
@@ -206,7 +200,8 @@ Set profile properties based on the profile name.
  * @param {Object} args Named arguments
  * @param {string} args.name The name of the profile
  * 
- * @return {String} String with success or error message.
+ * @return { boolean } True if properties were loaded from the specified profile.
+ *                     False if profile does not exist and no property will be loaded
  */
 Honeywell
     .barcodeReaderLoadProfile(function (data) {
@@ -225,8 +220,8 @@ All supported properties are listed [here](#properties).
 
 A valid example argument is
 
-```json
-var json_properties = [
+```javascript
+var jsonProperties = [
 	Honeywell.Properties.PROPERTY_AZTEC_MAXIMUM_LENGTH,
 	Honeywell.Properties.TRIGGER_CONTROL_MODE_CLIENT_CONTROL
 ];
@@ -239,7 +234,7 @@ var json_properties = [
  * @param {Object} args Named arguments
  * @param {[ string ]} args.properties
  * 
- * @return {[ BarcodeReaderProperties ]}
+ * @return { BarcodeReaderProperties } The map of properties
  */
 Honeywell
     .barcodeReaderGetProperties(function (data) {
@@ -247,7 +242,7 @@ Honeywell
     }, function (reason) {
         console.error(reason);
     }, {
-        properties: json_properties
+        properties: jsonProperties
     });
 ```
 
@@ -258,22 +253,22 @@ All supported properties are listed [here](#properties).
 
 For String-Properties use:
 ```json
-{"name": "PROPERTY_STRING", "value": "VALUE"}
+{ "name": "PROPERTY_STRING", "value": "VALUE" }
 ```
 
 For Integer-Properties use:
 ```json
-{"name": "PROPERTY_INTEGER", "value": 0}
+{ "name": "PROPERTY_INTEGER", "value": 0 }
 ```
 
 For Boolean-Properties use:
 ```json
-{"name": "PROPERTY_BOOLEAN", "value": false}
+{ "name": "PROPERTY_BOOLEAN", "value": false }
 ```
 
 A valid example JSON is:
-```json
-var json_properties = [
+```javascript
+var jsonProperties = [
 	{"name": Honeywell.Properties.PROPERTY_AZTEC_MAXIMUM_LENGTH, "value": 23}, 
 	{"name": Honeywell.Properties.DEC_ID_PROP_USE_ROI_DPM_AIMER_CENTERED, "value": true},
 	{"name": Honeywell.Properties.TRIGGER_CONTROL_MODE_CLIENT_CONTROL, "value": true}
@@ -285,9 +280,7 @@ var json_properties = [
  * @param {function} success Callback for success
  * @param {function} error Callback for error
  * @param {Object} args Named arguments
- * @param {[ BarcodeReaderSetFormat ]} args.properties The properties as JSON array
- * 
- * @return {[ BarcodeReaderProperties ]}
+ * @param { BarcodeReaderProperty[] } args.properties The properties as JSON array
  */
 Honeywell
     .barcodeReaderSetProperties(function (data) {
@@ -295,7 +288,7 @@ Honeywell
     }, function (reason) {
         console.error(reason);
     }, {
-        properties: json_properties
+        properties: jsonProperties
     });
 ```
 
@@ -309,7 +302,7 @@ Use to get all properties (the map of the properties not the values).
  * @param {function} success Callback for success
  * @param {function} error Callback for error
  * 
- * @return {[ BarcodeReaderPropertiesMap ]}
+ * @return { BarcodeReaderProperties } The map of properties
  */
 Honeywell
     .getAllProperties(function (data) {
@@ -329,7 +322,7 @@ Use to get all default properties.
  * @param {function} success Callback for success
  * @param {function} error Callback for error
  * 
- * @return {[ BarcodeReaderPropertiesMap ]}
+ * @return {[ BarcodeReaderProperties ]} The map of default properties
  */
 Honeywell
     .getAllDefaultProperties(function (data) {
@@ -350,12 +343,10 @@ Enable or disable aim.
  * @param {function} error Callback for error
  * @param {Object} args Named arguments
  * @param {boolean} args.enabled If aiming is enabled
- * 
- * @return {String} String with success or error message.
  */
 Honeywell
-    .barcodeReaderAim(function (data) {
-        console.log(data);
+    .barcodeReaderAim(function () {
+        console.log("success");
     }, function (reason) {
         console.error(reason);
     }, {
@@ -374,12 +365,10 @@ Enable or disable decode.
  * @param {function} error Callback for error
  * @param {Object} args Named arguments
  * @param {boolean} args.enabled If decode is enabled
- * 
- * @return {String} String with success or error message.
  */
 Honeywell
-    .barcodeReaderDecode(function (data) {
-        console.log(data);
+    .barcodeReaderDecode(function () {
+        console.log("success");
     }, function (reason) {
         console.error(reason);
     }, {
@@ -398,12 +387,10 @@ Enable or disable light.
  * @param {function} error Callback for error
  * @param {Object} args Named arguments
  * @param {boolean} args.enabled If light is enabled
- * 
- * @return {String} String with success or error message.
  */
 Honeywell
-    .barcodeReaderLight(function (data) {
-        console.log(data);
+    .barcodeReaderLight(function () {
+        console.log("success");
     }, function (reason) {
         console.error(reason);
     }, {
@@ -422,11 +409,11 @@ This event is dispatched by the AidcManager when a USB device change occurs (a d
  * @param {function} success Callback for success
  * @param {function} error Callback for error
  * 
- * @return {BarcodeDeviceConnectionEvent}
+ * @return {BarcodeDeviceConnectionEvent} Dispatched when a new scanner is connected or disconnected
  */
 Honeywell
-    .onBarcodeDeviceConnectionEvent(function (data) {
-        console.log(data);
+    .onBarcodeDeviceConnectionEvent(function (event) {
+        console.log(event);
     }, function (reason) {
         console.error(reason);
     });
@@ -434,7 +421,7 @@ Honeywell
 
 ## onBarcodeEvent
 
-Called when a bar code label is successfully scanned.
+Called when a barcode label is successfully scanned.
 
 ```javascript
 /**
@@ -443,7 +430,7 @@ Called when a bar code label is successfully scanned.
  * @param {function} success Callback for success
  * @param {function} error Callback for error
  * 
- * @return {BarcodeReadEvent}
+ * @return {BarcodeReadEvent} This event is dispatched by the BarcodeReader when a bar code label is successfully decoded.
  */
 Honeywell
     .onBarcodeEvent(function (data) {
@@ -464,7 +451,7 @@ Called when a bar code label is not successfully scanned.
  * @param {function} success Callback for success
  * @param {function} error Callback for error
  * 
- * @return {BarcodeFailureEvent}
+ * @return {BarcodeFailureEvent} This event is dispatched by the BarcodeReader when a bar code label is not successfully decoded.
  */
 Honeywell
     .onFailureEvent(function (failure) {
@@ -486,12 +473,10 @@ Sends a trigger up/down action.
  * @param {function} error Callback for error
  * @param {Object} args Named arguments
  * @param {Object} args.press If software trigger is pressed or not
- * 
- * @return {String} String with success or error message.
  */
 Honeywell
     .barcodeReaderPressSoftwareTrigger(function () {
-        console.log("pressed");
+        console.log("success");
     }, function (reason) {
         console.error(reason);
     }, {
