@@ -15,8 +15,8 @@ Browser Inspector. `@return` describes the data the success callback is called w
 interface BarcodeReaderInfo {    
     controlLogicVersion: string;
     fastDecodeVersion: string;
-    frameHeight: int;
-    frameWidth: int;
+    frameHeight: number;
+    frameWidth: number;
     friendlyName: string;
     fullDecodeVersion: string
     name: string;
@@ -30,7 +30,7 @@ interface BarcodeReaderInfo {
 ```javascript
 interface BarcodeReaderProperty {    
     name: string;
-    value: boolean | int | boolean;
+    value: boolean | number | boolean;
 }
 ```
 
@@ -38,7 +38,7 @@ interface BarcodeReaderProperty {
 
 ```javascript
 interface BarcodeReaderPropertyMap {
-    [name: string]: boolean | int | string
+    [name: string]: boolean | number | string
 }
 ```
 
@@ -46,19 +46,25 @@ interface BarcodeReaderPropertyMap {
 ```javascript
 interface BarcodeDeviceConnectionEvent {
     barcodeDevice: BarcodeReaderInfo
-    status: int;
+    status: number;
 }
 ```
 
 ## BarcodeReadEvent
 ```javascript
-interface BarcodeDeviceConnectionEvent {
+interface BarcodeReadEvent {
     data: string;
     charset: string;
     codeId: string;
     aimId: string;
     imestamp: string;
-    bounds: List<Point>;
+    bounds: Point[];
+}
+```
+```javascript
+interface Point {
+    x: number;
+    y: number
 }
 ```
 
