@@ -61,6 +61,9 @@ interface BarcodeReadEvent {
     bounds: Point[];
 }
 ```
+
+## Point
+
 ```javascript
 interface Point {
     x: number;
@@ -173,6 +176,26 @@ Honeywell
 ```
 
 # BarcodeReader
+
+## barcodeReaderGetInfo
+Get info of current barcode reader
+
+```javascript
+/**
+ * @name barcodeReaderGetInfo
+ * @function
+ * @param {function} success Callback for success
+ * @param {function} error Callback for error
+  * 
+ * @return { BarcodeReaderInfo } Info of current barcode reader
+ */
+Honeywell
+    .barcodeReaderGetInfo(function (data) {
+        console.log(data);
+    }, function (reason) {
+        console.error(reason);
+    });
+```
 
 ## barcodeReaderGetProfileNames
 Get the names of all the existing profiles.
