@@ -1,5 +1,15 @@
 # Development Hints
 
+## Deployment & Debugging with Android Studio
+
+The following commands descripe how to deploy and debug the Demo App. 
+
+Change into Demo App root:
+1. Run `npm install` one time
+2. Run `npm run ionic -- cordova prepare` one time
+3. Open the directory `/platforms/android` with Android Studio to deploy the application and take advantage of the visual IDE debugger 
+4. Edit plugin in IDEA. Add and remove plugin with `check_plugin.py` to transfer changed into Demo App project.
+
 ## Check Plugin Python Script
 
 The Python script `check_plugin.py` can be used to speed up development. The script is located in Demo App root directory.
