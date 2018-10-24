@@ -318,7 +318,7 @@ self.Properties = Object.freeze({
 
 function createActionFunction (action) {
     return function (success, error, args) {
-        cordova.exec(success, error, feature, action, [args]);
+        cordova.exec(success, error, feature, action, [args || ()]);
     }
 }
 
