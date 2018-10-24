@@ -25,6 +25,8 @@ public class BarcodeReaderLoadProfile extends HoneywellAction {
 
     @Override
     public void run() {
+        int successInt = 0;
+
         try {
 
             if(this.barcodeReaderManager.getInstance() != null) {
@@ -33,7 +35,12 @@ public class BarcodeReaderLoadProfile extends HoneywellAction {
                 String name = jsonArgs.getString(JSON_ARGS_NAME);
 
                 boolean success = this.barcodeReaderManager.getInstance().loadProfile(name);
-                this.callbackContext.success(success);
+
+                if (success) {
+                    successInt = 1;
+                }
+
+                this.callbackContext.success(successInt);
             }
             else {
                 this.callbackContext.error(BARCODE_READER_NOT_INIT);
