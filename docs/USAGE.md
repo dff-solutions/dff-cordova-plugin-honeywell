@@ -44,7 +44,7 @@ interface BarcodeReaderProperties {
 
 ## BarcodeDeviceConnectionEvent
 ```javascript
-BarcodeDeviceConnectionEvent {
+interface BarcodeDeviceConnectionEvent {
 	barcodeDevice: BarcodeReaderInfo
 	status: int;
 }
@@ -52,7 +52,7 @@ BarcodeDeviceConnectionEvent {
 
 ## BarcodeReadEvent
 ```javascript
-BarcodeDeviceConnectionEvent {
+interface BarcodeDeviceConnectionEvent {
 	data: string;
 	charset: string;
 	codeId: string;
@@ -64,7 +64,7 @@ BarcodeDeviceConnectionEvent {
 
 ## BarcodeFailureEvent
 ```javascript
-BarcodeFailureEvent {
+interface BarcodeFailureEvent {
 	timestamp: string;
 }
 ```
