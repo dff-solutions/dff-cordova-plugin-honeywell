@@ -1,6 +1,6 @@
 # Usage
 
-All important API functions from the objects AidcManager and BarcodeReader are wrapped and exposed to the Plugin user through this plugin. Naming convetions are taken from the [Data Collection API](Honeywell_MobilitySDK_Android_v1.00.00.0054/honeywell-android-data-collection-sdk/docs/api/index.html).
+All important functions from the Honeywell DataCollection API for the objects AidcManager and BarcodeReader are wrapped and exposed to the Plugin user. Naming convetions are taken from the [DataCollection API](Honeywell_MobilitySDK_Android_v1.00.00.0054/honeywell-android-data-collection-sdk/docs/api/index.html).
 
 The example code provided as JavaScript snippets for each function is runnable over the Browser Inspector.
 
