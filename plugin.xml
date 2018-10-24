@@ -1,253 +1,33 @@
 <?xml version="1.0" ?>
-<plugin id="dff-cordova-plugin-honeywell" version="0.0.2" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
-    
-    
-    
-    
-    
+<plugin id="dff-cordova-plugin-honeywell" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
 
-    
-    
-    
-    
-    
     <name>Honeywell</name>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <description>Honeywell Plugin</description>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <author>dff solutions</author>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <keywords>phonegap,cordova,honeywell,dff</keywords>
-    
-    
-    
-    
-    
-    
-     
-    
-    
-    
-    
-    <js-module name="honeywell" src="www/honeywell.js">
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        <clobbers target="Honeywell"/>
-        
-        
-        
-        
-        
-    
-    
-    
-    
-    
-    </js-module>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dependency id="dff-cordova-plugin-common" url="https://github.com/dff-solutions/dff.CordovaPlugin.Common.git"/>
-    
-    
-    
-    
-    
- 
-    
-    
-    
-    
-    
-    <!-- android -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <platform name="android">
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        <config-file parent="/*" target="res/xml/config.xml">
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            <feature name="Honeywell">
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                <param name="android-package" value="com.dff.cordova.plugin.honeywell.HoneywellPlugin"/>
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                <param name="onload" value="true"/>
-                
-                
-                
-                
-                
-            
-            
-            
-            
-            
-            </feature>
-            
-            
-            
-            
-            
-        
-        
-        
-        
-        
-        </config-file>
-        
-        
-        
-        
-        
-    
-        
-        
-        
-        
-        
-        <config-file parent="/manifest" target="AndroidManifest.xml">
-            
-            
-            
-            
-            
-        	
-            
-            
-            
-            
-            <uses-permission android:name="com.honeywell.decode.permission.DECODE"/>
-            
-            
-            
-            
-             
-        
-        
-        
-        
-        
-        </config-file>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        <lib-file src="libs/DataCollection.jar"/>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        <framework custom="true" src="build-honeywell-plugin.gradle" type="gradleReference"/>
-        
-        
-        
-        
-        
 
-        
-        
-        
-        
-        
+    <js-module name="honeywell" src="www/honeywell.js">
+        <clobbers target="Honeywell"/>
+    </js-module>
+
+    <dependency id="dff-cordova-plugin-common" url="https://github.com/dff-solutions/dff.CordovaPlugin.Common.git"/>
+
+    <!-- android -->
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="Honeywell">
+                <param name="android-package" value="com.dff.cordova.plugin.honeywell.HoneywellPlugin"/>
+                <param name="onload" value="true"/>
+            </feature>
+        </config-file>
+
+        <config-file parent="/manifest" target="AndroidManifest.xml">
+            <uses-permission android:name="com.honeywell.decode.permission.DECODE"/>
+        </config-file>
+
+        <lib-file src="libs/DataCollection.jar"/>
+		<framework custom="true" src="build-honeywell-plugin.gradle" type="gradleReference"/>
+
         <source-file src="src/main/java\com\dff\cordova\plugin\honeywell\HoneywellPlugin.java" target-dir="src/main/java\com\dff\cordova\plugin\honeywell"/>
         <source-file src="src/main/java\com\dff\cordova\plugin\honeywell\barcode\BarcodeCallbackHandler.java" target-dir="src/main/java\com\dff\cordova\plugin\honeywell\barcode"/>
         <source-file src="src/main/java\com\dff\cordova\plugin\honeywell\barcode\BarcodeDeviceCallbackHandler.java" target-dir="src/main/java\com\dff\cordova\plugin\honeywell\barcode"/>
@@ -276,14 +56,5 @@
         <source-file src="src/main/java\com\dff\cordova\plugin\honeywell\json\model\JsonFailureEvent.java" target-dir="src/main/java\com\dff\cordova\plugin\honeywell\json\model"/>
         <source-file src="src/main/java\com\dff\cordova\plugin\honeywell\json\model\JsonPoint.java" target-dir="src/main/java\com\dff\cordova\plugin\honeywell\json\model"/>
     </platform>
-    
-    
-    
-    
-    
-
-
-
-
 
 </plugin>
