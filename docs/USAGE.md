@@ -34,10 +34,10 @@ interface BarcodeReaderProperty {
 }
 ```
 
-## BarcodeReaderProperties
+## BarcodeReaderPropertyMap
 
 ```javascript
-interface BarcodeReaderProperties {
+interface BarcodeReaderPropertyMap {
     [name: string]: boolean | int | string
 }
 ```
@@ -234,7 +234,7 @@ var jsonProperties = [
  * @param {Object} args Named arguments
  * @param {[ string ]} args.properties
  * 
- * @return { BarcodeReaderProperties } The map of properties
+ * @return { BarcodeReaderPropertyMap } The map of properties
  */
 Honeywell
     .barcodeReaderGetProperties(function (data) {
@@ -302,7 +302,7 @@ Use to get all properties (the map of the properties not the values).
  * @param {function} success Callback for success
  * @param {function} error Callback for error
  * 
- * @return { BarcodeReaderProperties } The map of properties
+ * @return { BarcodeReaderPropertyMap } The map of properties
  */
 Honeywell
     .getAllProperties(function (data) {
@@ -322,7 +322,7 @@ Use to get all default properties.
  * @param {function} success Callback for success
  * @param {function} error Callback for error
  * 
- * @return {[ BarcodeReaderProperties ]} The map of default properties
+ * @return { BarcodeReaderPropertyMap } The map of default properties
  */
 Honeywell
     .getAllDefaultProperties(function (data) {
@@ -484,6 +484,6 @@ Honeywell
     });
 ```
 
-# <a name="properties"></a>BarcodeReader Properties
+# Properties
 
 All valid BarcodeReader properties from DataCollection API version 1.9 can be found under Honeywell.Properties.[PROPERTY_NAME].
