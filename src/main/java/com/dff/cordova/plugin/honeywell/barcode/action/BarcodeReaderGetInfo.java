@@ -8,9 +8,11 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.honeywell.aidc.AidcManager;
 import com.honeywell.aidc.BarcodeReaderInfo;
+import com.honeywell.aidc.ScannerUnavailableException;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class BarcodeReaderGetInfo extends HoneywellAction {
@@ -30,15 +32,7 @@ public class BarcodeReaderGetInfo extends HoneywellAction {
 
             if(this.barcodeReaderManager.getInstance() != null) {
 
-                // get complete info class and convert to JSON array with GSON
-                BarcodeReaderInfo info = this.barcodeReaderManager.getInstance().getInfo();
-
-                // Gson conversion code
-                Gson gson = new GsonBuilder().setFieldNamingStrategy(new GsonNamingStrategy()).create();
-                String json = gson.toJson(info);
-                JSONObject jsonObj = new JSONObject(json);
-
-                this.callbackContext.success(jsonObj);
+                this.callbackContext.success(getBarCodeReaderInfoAsJSOnObject(this.barcodeReaderManager));
             }
             else {
                 this.callbackContext.error(BARCODE_READER_NOT_INIT);
@@ -48,5 +42,18 @@ public class BarcodeReaderGetInfo extends HoneywellAction {
             CordovaPluginLog.e(TAG, e.getMessage(), e);
             this.callbackContext.error(e.getMessage());
         }
+    }
+
+    public static JSONObject getBarCodeReaderInfoAsJSOnObject(BarcodeReaderManager manager) throws JSONException, ScannerUnavailableException
+    {
+        // get complete info class and convert to JSON array with GSON
+        BarcodeReaderInfo info = manager.getInstance().getInfo();
+
+        // Gson conversion code
+        Gson gson = new GsonBuilder().setFieldNamingStrategy(new GsonNamingStrategy()).create();
+        String json = gson.toJson(info);
+        JSONObject jsonObj = new JSONObject(json);
+
+        return jsonObj;
     }
 }

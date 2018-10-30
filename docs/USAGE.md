@@ -134,6 +134,8 @@ Please note that the name has to be valid and that device has to be listed in th
  * @param {Object} args Named arguments
  * @param {String} args.name? The optional scanner name to create the BarcodeReader object for.
  *                            The internal scanner is used as default.
+ * 
+ * @return { BarcodeReaderInfo }
  */
  
 // without name argument    
@@ -371,7 +373,7 @@ Enable or disable aim.
  * @param {function} success Callback for success
  * @param {function} error Callback for error
  * @param {Object} args Named arguments
- * @param {boolean} args.enabled If aiming is enabled
+ * @param {boolean} args.enable If aiming is enabled
  */
 Honeywell
     .barcodeReaderAim(function () {
@@ -379,7 +381,7 @@ Honeywell
     }, function (reason) {
         console.error(reason);
     }, {
-        enabled: true
+        enable: true
     });
 ```
 
@@ -393,7 +395,7 @@ Enable or disable decode.
  * @param {function} success Callback for success
  * @param {function} error Callback for error
  * @param {Object} args Named arguments
- * @param {boolean} args.enabled If decode is enabled
+ * @param {boolean} args.enable If decode is enabled
  */
 Honeywell
     .barcodeReaderDecode(function () {
@@ -401,7 +403,7 @@ Honeywell
     }, function (reason) {
         console.error(reason);
     }, {
-        enabled: true
+        enable: true
     });
 ```
 
@@ -415,7 +417,7 @@ Enable or disable light.
  * @param {function} success Callback for success
  * @param {function} error Callback for error
  * @param {Object} args Named arguments
- * @param {boolean} args.enabled If light is enabled
+ * @param {boolean} args.enable If light is enabled
  */
 Honeywell
     .barcodeReaderLight(function () {
@@ -423,7 +425,7 @@ Honeywell
     }, function (reason) {
         console.error(reason);
     }, {
-        enabled: true
+        enable: true
     });
 ```
 

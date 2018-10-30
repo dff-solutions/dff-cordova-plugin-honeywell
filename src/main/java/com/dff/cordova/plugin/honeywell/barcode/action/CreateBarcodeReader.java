@@ -51,7 +51,9 @@ public class CreateBarcodeReader extends HoneywellAction {
 
                         this.barcodeReaderManager.getInstance().claim();
                         this.barcodeReaderManager.getInstance().addBarcodeListener(this.barcodeListener);
-                        this.callbackContext.success(BARCODE_READER_INIT);
+
+                        // return barcode reader info
+                        this.callbackContext.success(BarcodeReaderGetInfo.getBarCodeReaderInfoAsJSOnObject(this.barcodeReaderManager));
                     }
                     catch (ScannerUnavailableException e) {
                         this.callbackContext.error(e.getMessage());
